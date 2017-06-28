@@ -7,7 +7,7 @@
         <setting name="provider-name" value="" />
         <datasource-mapping>
           <factory-entry name="NewPersistenceUnit" value="4c4dc6a5-9073-4beb-8d6e-cbcb5870fc55" />
-          <factory-entry name="forum-jpa" />
+          <factory-entry name="forum-jpa" value="4c4dc6a5-9073-4beb-8d6e-cbcb5870fc55" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/META-INF/persistence.xml" />
       </configuration>
