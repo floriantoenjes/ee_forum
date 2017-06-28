@@ -1,6 +1,7 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -74,5 +75,12 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean addRole(Role role) {
+        if (roles == null) {
+            roles = new ArrayList<>();
+        }
+        return roles.add(role);
     }
 }

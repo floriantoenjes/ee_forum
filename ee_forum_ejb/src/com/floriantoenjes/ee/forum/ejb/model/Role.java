@@ -5,6 +5,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(schema = "FORUM", name = "ROLE")
+@NamedQuery(
+        name = "Role.findByName",
+        query = "SELECT r FROM Role r WHERE r.name = :name"
+)
 public class Role implements Serializable{
     private static final long serialVersionUID = 1L;
 

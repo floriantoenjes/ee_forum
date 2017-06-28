@@ -1,6 +1,7 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,6 +38,9 @@ public class Board {
     }
 
     public boolean addThread(Thread thread) {
+        if (threads == null) {
+            threads = new ArrayList<>();
+        }
         thread.setBoard(this);
         return this.threads.add(thread);
     }

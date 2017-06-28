@@ -1,6 +1,7 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -87,6 +88,9 @@ public class Thread {
     }
 
     public boolean addPost(Post post) {
+        if (posts == null) {
+            posts = new ArrayList<>();
+        }
         post.setThread(this);
         return this.posts.add(post);
     }
