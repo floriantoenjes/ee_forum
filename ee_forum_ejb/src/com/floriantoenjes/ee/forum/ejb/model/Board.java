@@ -1,6 +1,7 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(schema = "FORUM", name = "BOARD")
@@ -23,6 +24,22 @@ public class Board {
     private String name;
 
     public Board() {}
+
+    @OneToMany
+    private List<Thread> threads;
+
+    public List<Thread> getThreads() {
+        return threads;
+    }
+
+    public void setThreads(List<Thread> threads) {
+        this.threads = threads;
+    }
+
+    public boolean addThread(Thread thread) {
+        thread.setBoard(this);
+        return this.threads.add(thread);
+    }
 
     public Long getId() {
         return id;

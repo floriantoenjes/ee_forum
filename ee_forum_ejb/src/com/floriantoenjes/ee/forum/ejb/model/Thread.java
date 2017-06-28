@@ -2,6 +2,7 @@ package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(schema = "FORUM", name = "THREAD")
@@ -31,6 +32,9 @@ public class Thread {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
+
+    @OneToMany
+    private List<Post> posts;
 
     public Thread() {}
 
@@ -72,5 +76,18 @@ public class Thread {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public boolean addPost(Post post) {
+        post.setThread(this);
+        return this.posts.add(post);
     }
 }
