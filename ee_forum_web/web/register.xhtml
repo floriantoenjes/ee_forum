@@ -6,10 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
+    <h:messages/>
     <h:form>
-        <h:inputText value="#{registerController.email}"/>
-        <h:inputSecret value="#{registerController.password}"/>
-        <h:inputText value="#{registerController.username}"/>
+        <h:inputText value="#{registerController.user.email}"/>
+        <h:inputSecret value="#{registerController.user.password}"/>
+        <h:inputText value="#{registerController.user.username}"/>
         <h:commandButton action="#{registerController.register}" value="Register"/>
     </h:form>
 </h:body>

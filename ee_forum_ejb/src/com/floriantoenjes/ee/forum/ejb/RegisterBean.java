@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.validation.Valid;
 
 @Stateless
 @LocalBean
@@ -20,18 +21,14 @@ public class RegisterBean {
 
     }
 
-    public String register(String email, String password, String username) {
+    public String register(User user) {
         Query query = em.createNamedQuery("Role.findByName");
         query.setParameter("name", "USER");
         Role userRole = (Role) query.getSingleResult();
 
-        User user = new User();
         user.addRole(userRole);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setUsername(username);
 
-        em.persist(user);
+//        em.persist(user);
 
         return "Registration successful!";
     }

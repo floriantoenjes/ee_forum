@@ -1,6 +1,8 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +24,16 @@ public class User {
     )
     private Long id;
 
+    @NotNull
+    @Size(min = 3, max = 40)
     private String email;
 
+    @NotNull
+    @Size(min = 6, max = 10)
     private String password;
 
+    @NotNull
+    @Size(min = 4, max = 20)
     private String username;
 
     @ManyToMany

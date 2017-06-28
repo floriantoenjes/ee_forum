@@ -1,50 +1,34 @@
 package com.floriantoenjes.ee.forum.web;
 
 import com.floriantoenjes.ee.forum.ejb.RegisterBean;
+import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 @RequestScoped
 public class RegisterController {
-    private String email;
 
-    private String password;
-
-    private String username;
+    @Inject
+    private User user;
 
     @EJB
     private RegisterBean registerBean;
 
     public String register() {
-        registerBean.register(email, password, username);
+        registerBean.register(user);
 
         return "index.xhtml";
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User user) {
+        this.user = user;
     }
 }
