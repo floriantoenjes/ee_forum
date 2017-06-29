@@ -5,16 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:messages/>
 <f:view>
     <h:outputLabel value="Hello, world"/>
 </f:view>
-<h:dataTable value="#{boardController.boards}" var="board">
-    <h:column>
-        <h:panelGrid columns="1">
-            <h:outputText value="#{board.name}"/>
-            <h:link value="#{board.name}" outcome="board?board_id=#{board.id}"/>
-        </h:panelGrid>
-    </h:column>
-</h:dataTable>
 </html>

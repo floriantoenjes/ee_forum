@@ -12,10 +12,32 @@ import java.util.List;
 @RequestScoped
 public class ThreadController {
 
+    private Long boardId = 0L;
+
     List<Thread> threads;
 
     @EJB
     ThreadBean threadBean;
 
+    public void init() {
+        if (boardId != null) {
+            threads = threadBean.findByBoardId(boardId);
+        }
+    }
 
+    public long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(long boardId) {
+        this.boardId = boardId;
+    }
+
+    public List<Thread> getThreads() {
+        return threads;
+    }
+
+    public void setThreads(List<Thread> threads) {
+        this.threads = threads;
+    }
 }

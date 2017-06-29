@@ -7,5 +7,18 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:outputLabel value="Hello, world"/>
+    <f:metadata>
+        <f:viewParam name="board_id" value="#{threadController.boardId}"/>
+        <f:viewAction action="#{threadController.init}"/>
+    </f:metadata>
+
+    <h:dataTable value="#{threadController.threads}" var="thread">
+        <h:column>
+            <h:panelGrid columns="1">
+                <h:outputText value="#{thread.name}"/>
+                <h:link value="#{thread.name}" outcome="thread?thread_id=#{thread.id}"/>
+            </h:panelGrid>
+        </h:column>
+    </h:dataTable>
 </f:view>
 </html>
