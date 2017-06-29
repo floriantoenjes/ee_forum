@@ -8,6 +8,10 @@ import java.util.List;
 
 @Entity
 @Table(schema = "FORUM", name = "BOARD")
+@NamedQuery(
+        name = "Board.findAll",
+        query = "SELECT b FROM Board b"
+)
 public class Board {
 
     @Id
