@@ -6,10 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
     <f:metadata>
         <f:viewAction action="#{threadController.init}"/>
     </f:metadata>
+
+    <h:outputLabel value="#{threadController.board.name}"/>
 
     <h:dataTable value="#{threadController.threads}" var="thread">
         <h:column>

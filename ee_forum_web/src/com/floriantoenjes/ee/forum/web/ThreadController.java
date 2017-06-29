@@ -1,6 +1,8 @@
 package com.floriantoenjes.ee.forum.web;
 
+import com.floriantoenjes.ee.forum.ejb.BoardBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
+import com.floriantoenjes.ee.forum.ejb.model.Board;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
 
 import javax.ejb.EJB;
@@ -14,13 +16,19 @@ public class ThreadController {
 
     private Long boardId;
 
+    private Board board;
+
     private List<Thread> threads;
+
+    @EJB
+    private BoardBean boardBean;
 
     @EJB
     private ThreadBean threadBean;
 
     public void init() {
         if (boardId != null) {
+            board = boardBean.find(boardId);
             threads = threadBean.findByBoardId(boardId);
         }
     }
@@ -39,5 +47,17 @@ public class ThreadController {
 
     public void setThreads(List<Thread> threads) {
         this.threads = threads;
+    }
+
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }

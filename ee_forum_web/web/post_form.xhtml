@@ -6,7 +6,11 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <f:metadata>
+        <f:viewAction action="#{postController.init}"/>
+    </f:metadata>
+
+    <h:outputLabel value="#{postController.thread.name}"/>
     <h:messages/>
     <h:form>
         <h:inputText value="#{postController.post.text}"/>

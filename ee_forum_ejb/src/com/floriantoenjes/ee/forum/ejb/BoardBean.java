@@ -15,6 +15,10 @@ public class BoardBean {
     @PersistenceContext
     private EntityManager em;
 
+    public Board find(Long id) {
+        return em.find(Board.class, id);
+    }
+
     @SuppressWarnings("unchecked")
     public List<Board> findAll() {
         return em.createNamedQuery("Board.findAll").getResultList();

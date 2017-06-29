@@ -8,18 +8,18 @@
       xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <h:messages/>
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:outputLabel value="Forum"/>
+
+    <h:dataTable value="#{boardController.boards}" var="board">
+        <h:column>
+            <h:panelGrid columns="1">
+                <pretty:link mappingId="viewBoard">
+                    <f:param value="#{board.id}"/>
+                    #{board.name}
+                </pretty:link>
+                <h:link value="Sign in" outcome="signin.xhtml"/>
+            </h:panelGrid>
+        </h:column>
+    </h:dataTable>
 </f:view>
-<h:dataTable value="#{boardController.boards}" var="board">
-    <h:column>
-        <h:panelGrid columns="1">
-            <h:outputText value="#{board.name}"/>
-            <pretty:link mappingId="viewBoard">
-                <f:param value="#{board.id}" />
-                #{board.name}
-            </pretty:link>
-            <h:link value="Sign in" outcome="signin.xhtml"/>
-        </h:panelGrid>
-    </h:column>
-</h:dataTable>
 </html>

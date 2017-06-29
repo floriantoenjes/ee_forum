@@ -4,11 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pretty="http://ocpsoft.com/prettyfaces">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+    <h:outputLabel value="#{postController.thread.name}"/>
     <f:metadata>
-        <!--<f:viewParam name="thread_id" value="#{postController.threadId}"/>-->
         <f:viewAction action="#{postController.init}"/>
     </f:metadata>
 
@@ -24,6 +24,5 @@
         <f:param value="#{postController.threadId}" />
         New post
     </pretty:link>
-    <!--<h:link value="Add a Post" outcome="post_form.xhtml?thread_id=#{postController.threadId}"/>-->
 </f:view>
 </html>

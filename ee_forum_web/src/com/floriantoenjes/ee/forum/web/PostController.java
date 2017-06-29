@@ -3,6 +3,7 @@ package com.floriantoenjes.ee.forum.web;
 import com.floriantoenjes.ee.forum.ejb.PostBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
 import com.floriantoenjes.ee.forum.ejb.model.Post;
+import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
@@ -18,6 +19,8 @@ public class PostController {
     private Long boardId;
     private Long threadId;
 
+    private Thread thread;
+
     private List<Post> posts;
 
     @Inject
@@ -31,6 +34,7 @@ public class PostController {
 
     public void init() {
         if (threadId != null) {
+            thread = threadBean.find(threadId);
             posts = postBean.findByThreadId(threadId);
         }
     }
@@ -75,5 +79,13 @@ public class PostController {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    public void setThread(Thread thread) {
+        this.thread = thread;
     }
 }
