@@ -42,7 +42,7 @@ public class PostController {
 
         postBean.createPost(post);
 
-        return "thread.xhtml?thread_id" + threadId;
+        return "thread.xhtml?thread_id=" + threadId;
     }
 
     public Long getBoardId() {
