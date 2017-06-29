@@ -1,6 +1,6 @@
 package com.floriantoenjes.ee.forum.web;
 
-import com.floriantoenjes.ee.forum.ejb.RegisterBean;
+import com.floriantoenjes.ee.forum.ejb.UserBean;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
@@ -16,7 +16,7 @@ public class RegisterController {
     private User user;
 
     @EJB
-    private RegisterBean registerBean;
+    private UserBean registerBean;
 
     public String register() {
         registerBean.register(user);

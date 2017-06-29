@@ -5,8 +5,12 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:messages/>
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+<h:body>
+    <h:form id="signinForm">
+        <h:message for="signinForm"/>
+        <h:inputText value="#{signinController.username}"/>
+        <h:inputSecret value="#{signinController.password}"/>
+        <h:commandButton action="#{signinController.signin}" value="Signin"/>
+    </h:form>
+</h:body>
 </html>
