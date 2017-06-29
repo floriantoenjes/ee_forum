@@ -26,6 +26,7 @@ public class SigninController implements Serializable {
 
     public String signin() {
         user = userBean.find(username, password).orElse(null);
+
         FacesContext fc = FacesContext.getCurrentInstance();
         if (user == null) {
             fc.addMessage("signinForm",

@@ -4,7 +4,9 @@ import com.floriantoenjes.ee.forum.ejb.UserBean;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
+import javax.el.ELContext;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,10 +18,17 @@ public class RegisterController {
     private User user;
 
     @EJB
-    private UserBean registerBean;
+    private UserBean userBean;
 
     public String register() {
-        registerBean.register(user);
+        user = userBean.register(user);
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ELContext elContext = fc.getELContext();
+        SigninController signinController = (SigninController) fc.getApplication().getELResolver()
+                .getValue(elContext, null, "signinController");
+
+        signinController.setUser(user);
 
         return "index.xhtml";
     }

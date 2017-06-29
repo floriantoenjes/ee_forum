@@ -21,16 +21,16 @@ public class UserBean {
 
     }
 
-    public String register(User user) {
+    public User register(User user) {
         Query query = em.createNamedQuery("Role.findByName");
         query.setParameter("name", "USER");
         Role userRole = (Role) query.getSingleResult();
 
         user.addRole(userRole);
 
-//        em.persist(user);
+        em.persist(user);
 
-        return "Registration successful!";
+        return user;
     }
 
     public Optional<User> find(String username, String password) {
