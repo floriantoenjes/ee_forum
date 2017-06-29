@@ -40,7 +40,7 @@ public class User implements Serializable {
     @Size(min = 4, max = 20)
     private String username;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USR_ROLE",
             joinColumns = @JoinColumn(name = "USR_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
