@@ -12,12 +12,12 @@ import java.util.List;
 @RequestScoped
 public class ThreadController {
 
-    private Long boardId = 0L;
+    private Long boardId;
 
-    List<Thread> threads;
+    private List<Thread> threads;
 
     @EJB
-    ThreadBean threadBean;
+    private ThreadBean threadBean;
 
     public void init() {
         if (boardId != null) {

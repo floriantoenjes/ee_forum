@@ -6,11 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <f:metadata>
-        <f:viewParam name="thread_id" value="#{postController.threadId}"/>
-        <f:viewAction action="#{postController.init}"/>
-    </f:metadata>
     <h:outputLabel value="Hello, world"/>
+    <h:messages/>
     <h:form>
         <h:inputText value="#{postController.post.text}"/>
         <h:commandButton action="#{postController.createPost(signinController.user)}" value="Create Post"/>

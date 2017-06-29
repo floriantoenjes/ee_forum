@@ -15,8 +15,8 @@ import java.util.List;
 @Named
 @RequestScoped
 public class PostController {
-    private Long boardId = 0L;
-    private Long threadId = 0L;
+    private Long boardId;
+    private Long threadId;
 
     private List<Post> posts;
 
@@ -42,7 +42,7 @@ public class PostController {
 
         postBean.createPost(post);
 
-        return "thread.xhtml?thread_id=" + threadId;
+        return "pretty:viewThread";
     }
 
     public Long getBoardId() {
