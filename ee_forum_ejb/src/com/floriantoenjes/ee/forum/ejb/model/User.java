@@ -2,6 +2,7 @@ package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class User {
 
     @NotNull
     @Size(min = 3, max = 40)
+    @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "has to be valid")
     private String email;
 
     @NotNull

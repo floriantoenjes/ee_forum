@@ -1,6 +1,8 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -21,14 +23,19 @@ public class Post {
     )
     private Long id;
 
+    @NotNull
+    @Size(min = 5, max = 1000)
     private String text;
 
+    @NotNull
     @ManyToOne
     private Thread thread;
 
+    @NotNull
     @ManyToOne
     private User author;
 
+    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 

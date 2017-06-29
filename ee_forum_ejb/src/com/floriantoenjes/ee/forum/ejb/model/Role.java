@@ -1,6 +1,8 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -26,6 +28,8 @@ public class Role implements Serializable{
     )
     private Long id;
 
+    @NotNull
+    @Size(max = 40)
     private String name;
 
     public Role() {}
