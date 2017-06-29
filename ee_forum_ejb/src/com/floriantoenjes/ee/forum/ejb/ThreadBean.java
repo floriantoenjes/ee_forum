@@ -19,6 +19,10 @@ public class ThreadBean {
     public ThreadBean() {
     }
 
+    public Thread find(Long id) {
+        return em.find(Thread.class, id);
+    }
+
     public List<Thread> findByBoardId(Long boardId) {
         TypedQuery<Thread> query = em.createQuery("SELECT t FROM Thread t WHERE t.board.id = :boardId", Thread.class);
         query.setParameter("boardId", boardId);

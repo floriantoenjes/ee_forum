@@ -17,6 +17,7 @@
             <h:panelGrid columns="1">
                 <h:outputText value="#{post.text}"/>
             </h:panelGrid>
+            <h:link value="Add a Post" outcome="post_form.xhtml?thread_id=#{postController.threadId}"/>
         </h:column>
     </h:dataTable>
 </f:view>

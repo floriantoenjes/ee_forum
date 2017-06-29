@@ -16,6 +16,10 @@ public class PostBean {
     @PersistenceContext
     private EntityManager em;
 
+    public void createPost(Post post) {
+        em.persist(post);
+    }
+
     public List<Post> findByThreadId(Long threadId) {
         TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p WHERE p.thread.id = :threadId", Post.class);
         query.setParameter("threadId", threadId);
