@@ -7,5 +7,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:outputLabel value="Hello, world"/>
+    <f:metadata>
+        <f:viewParam name="thread_id" value="#{postController.threadId}"/>
+        <f:viewAction action="#{postController.init}"/>
+    </f:metadata>
+
+    <h:dataTable value="#{postController.posts}" var="post">
+        <h:column>
+            <h:panelGrid columns="1">
+                <h:outputText value="#{post.text}"/>
+            </h:panelGrid>
+        </h:column>
+    </h:dataTable>
 </f:view>
 </html>
