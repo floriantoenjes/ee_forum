@@ -13,7 +13,7 @@ import java.io.Serializable;
 
 @Named
 @SessionScoped
-public class SigninController implements Serializable {
+public class SignInController implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String username;

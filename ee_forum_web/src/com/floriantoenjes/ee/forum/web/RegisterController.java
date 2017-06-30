@@ -25,10 +25,10 @@ public class RegisterController {
 
         FacesContext fc = FacesContext.getCurrentInstance();
         ELContext elContext = fc.getELContext();
-        SigninController signinController = (SigninController) fc.getApplication().getELResolver()
+        SignInController signInController = (SignInController) fc.getApplication().getELResolver()
                 .getValue(elContext, null, "signinController");
 
-        signinController.setUser(user);
+        signInController.setUser(user);
 
         return "index.xhtml";
     }

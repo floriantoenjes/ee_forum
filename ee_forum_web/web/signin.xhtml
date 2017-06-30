@@ -13,10 +13,10 @@
                 <h:outputText value="Sign In"/>
             </f:facet>
             <h:outputLabel for="username" value="Username:"/>
-            <h:inputText id="username" value="#{signinController.username}"/>
+            <h:inputText id="username" value="#{signInController.username}"/>
             <h:outputLabel for="password" value="Password:"/>
-            <h:inputSecret id="password" value="#{signinController.password}"/>
-            <h:commandButton action="#{signinController.signin}" value="Signin"/>
+            <h:inputSecret id="password" value="#{signInController.password}"/>
+            <h:commandButton action="#{signInController.signin}" value="Signin"/>
         </h:panelGrid>
     </h:form>
 </h:body>
