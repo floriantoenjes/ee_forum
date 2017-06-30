@@ -26,13 +26,6 @@ public class ThreadController {
     @EJB
     private ThreadBean threadBean;
 
-    public void init() {
-        if (boardId != null) {
-            board = boardBean.find(boardId);
-            threads = threadBean.findByBoardId(boardId);
-        }
-    }
-
     public long getBoardId() {
         return boardId;
     }
@@ -42,6 +35,7 @@ public class ThreadController {
     }
 
     public List<Thread> getThreads() {
+        threads = threadBean.findByBoardId(boardId);
         return threads;
     }
 

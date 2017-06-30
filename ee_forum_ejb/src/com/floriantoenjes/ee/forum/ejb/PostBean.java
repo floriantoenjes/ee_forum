@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -20,10 +21,25 @@ public class PostBean {
         em.persist(post);
     }
 
+    public Post find(Long id) {
+        return em.find(Post.class, id);
+    }
+
     public List<Post> findByThreadId(Long threadId) {
         TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p WHERE p.thread.id = :threadId", Post.class);
         query.setParameter("threadId", threadId);
 
         return query.getResultList();
+    }
+
+    public void editPost(Post post) {
+        em.merge(post);
+    }
+
+    public void deletePost(Long id) {
+        Query query = em.createQuery("DELETE FROM Post p WHERE p.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
+
     }
 }

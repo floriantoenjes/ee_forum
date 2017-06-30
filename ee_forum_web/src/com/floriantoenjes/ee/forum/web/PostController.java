@@ -16,6 +16,7 @@ import java.util.List;
 @Named
 @RequestScoped
 public class PostController {
+
     private Long boardId;
     private Long threadId;
     private Long postId;
@@ -36,7 +37,13 @@ public class PostController {
     public void init() {
         if (threadId != null) {
             thread = threadBean.find(threadId);
-            posts = postBean.findByThreadId(threadId);
+
+        }
+    }
+
+    public void initPost() {
+        if (postId != null) {
+            post = postBean.find(postId);
         }
     }
 
@@ -46,6 +53,20 @@ public class PostController {
         post.setCreated(new Date());
 
         postBean.createPost(post);
+
+        return "pretty:viewThread";
+    }
+
+    public String editPost() {
+        Post oldPost = postBean.find(postId);
+        oldPost.setText(post.getText());
+        postBean.editPost(oldPost);
+
+        return "pretty:viewThread";
+    }
+
+    public String deletePost() {
+        postBean.deletePost(postId);
 
         return "pretty:viewThread";
     }
@@ -67,6 +88,7 @@ public class PostController {
     }
 
     public List<Post> getPosts() {
+        posts = postBean.findByThreadId(threadId);
         return posts;
     }
 

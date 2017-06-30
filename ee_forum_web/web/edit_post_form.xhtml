@@ -7,14 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <f:metadata>
-        <f:viewAction action="#{postController.init}"/>
+        <f:viewAction action="#{postController.initPost}"/>
     </f:metadata>
 
     <h:outputLabel value="#{postController.thread.name}"/>
     <h:messages/>
     <h:form>
         <h:inputText value="#{postController.post.text}"/>
-        <h:commandButton action="#{postController.editPost(signinController.user)}" value="Edit Post"/>
+        <h:commandButton action="#{postController.editPost}" value="Edit Post"/>
+        <h:commandButton action="#{postController.deletePost}" value="Delete Post"/>
     </h:form>
 </f:view>
 </html>

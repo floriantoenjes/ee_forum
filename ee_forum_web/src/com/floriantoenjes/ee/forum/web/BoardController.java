@@ -21,12 +21,8 @@ public class BoardController {
 
     }
 
-    @PostConstruct
-    public void init() {
-        boards = boardBean.findAll();
-    }
-
     public List<Board> getBoards() {
+        boards = boardBean.findAll();
         return boards;
     }
 
