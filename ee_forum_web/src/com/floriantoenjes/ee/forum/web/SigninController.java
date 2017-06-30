@@ -30,7 +30,7 @@ public class SigninController implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         if (user == null) {
             fc.addMessage("signinForm",
-                    new FacesMessage("Email or password do not match"));
+                    new FacesMessage("Username or password do not match"));
             return "signin.xhtml";
         }
         fc.addMessage(null, new FacesMessage("Successfully signed in"));

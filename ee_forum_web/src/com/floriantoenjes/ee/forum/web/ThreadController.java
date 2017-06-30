@@ -21,9 +21,6 @@ public class ThreadController {
     private List<Thread> threads;
 
     @EJB
-    private BoardBean boardBean;
-
-    @EJB
     private ThreadBean threadBean;
 
     public long getBoardId() {

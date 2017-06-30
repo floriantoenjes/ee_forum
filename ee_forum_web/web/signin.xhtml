@@ -6,12 +6,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-    <h:outputText value="Sign In"/>
     <h:form id="signinForm">
         <h:message for="signinForm"/>
-        <h:inputText value="#{signinController.username}"/>
-        <h:inputSecret value="#{signinController.password}"/>
-        <h:commandButton action="#{signinController.signin}" value="Signin"/>
+        <h:panelGrid columns="2">
+            <f:facet name="header">
+                <h:outputText value="Sign In"/>
+            </f:facet>
+            <h:outputLabel for="username" value="Username:"/>
+            <h:inputText id="username" value="#{signinController.username}"/>
+            <h:outputLabel for="password" value="Password:"/>
+            <h:inputSecret id="password" value="#{signinController.password}"/>
+            <h:commandButton action="#{signinController.signin}" value="Signin"/>
+        </h:panelGrid>
     </h:form>
 </h:body>
 </html>
