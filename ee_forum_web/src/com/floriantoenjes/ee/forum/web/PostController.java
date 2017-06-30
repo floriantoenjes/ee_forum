@@ -6,6 +6,7 @@ import com.floriantoenjes.ee.forum.ejb.model.Post;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -35,16 +36,7 @@ public class PostController {
     private ThreadBean threadBean;
 
     public void init() {
-        if (threadId != null) {
-            thread = threadBean.find(threadId);
-
-        }
-    }
-
-    public void initPost() {
-        if (postId != null) {
-            post = postBean.find(postId);
-        }
+        post = getPost();
     }
 
     public String createPost(User author) {
@@ -58,9 +50,7 @@ public class PostController {
     }
 
     public String editPost() {
-        Post oldPost = postBean.find(postId);
-        oldPost.setText(post.getText());
-        postBean.editPost(oldPost);
+        System.out.println();
 
         return "pretty:viewThread";
     }
@@ -97,6 +87,9 @@ public class PostController {
     }
 
     public Post getPost() {
+        if (postId != null) {
+            return postBean.find(postId);
+        }
         return post;
     }
 
@@ -119,4 +112,5 @@ public class PostController {
     public void setPostId(Long postId) {
         this.postId = postId;
     }
+
 }

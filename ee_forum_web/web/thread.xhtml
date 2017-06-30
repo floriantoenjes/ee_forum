@@ -8,9 +8,6 @@
       xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <f:view>
     <h:outputLabel value="#{postController.thread.name}"/>
-    <f:metadata>
-        <f:viewAction action="#{postController.init}"/>
-    </f:metadata>
 
     <h:dataTable value="#{postController.posts}" var="post">
         <h:column>
@@ -18,8 +15,8 @@
                 <h:outputText value="#{post.text}"/>
             </h:panelGrid>
             <pretty:link mappingId="editPost">
-                <f:param value="#{postController.threadId}"/>
                 <f:param value="#{postController.boardId}"/>
+                <f:param value="#{postController.threadId}"/>
                 <f:param value="#{post.id}"/>
                 Edit post
             </pretty:link>
