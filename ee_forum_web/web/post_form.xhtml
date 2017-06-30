@@ -9,7 +9,7 @@
     <h:outputLabel value="#{postController.thread.name}"/>
     <h:messages/>
     <h:form>
-        <h:inputText value="#{postController.text}"/>
+        <h:inputText value="#{postController.post.text}"/>
         <h:commandButton action="#{postController.createPost(signinController.user)}" value="Create Post"/>
     </h:form>
 </f:view>

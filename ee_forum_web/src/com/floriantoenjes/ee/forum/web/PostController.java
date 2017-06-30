@@ -35,8 +35,8 @@ public class PostController {
     @EJB
     private ThreadBean threadBean;
 
-    public void init() {
-        post = getPost();
+    public void initPost() {
+        post = postBean.find(postId);
     }
 
     public String createPost(User author) {
@@ -50,7 +50,10 @@ public class PostController {
     }
 
     public String editPost() {
-        System.out.println();
+        String text = post.getText();
+        post = postBean.find(postId);
+        post.setText(text);
+        postBean.editPost(post);
 
         return "pretty:viewThread";
     }
@@ -87,9 +90,6 @@ public class PostController {
     }
 
     public Post getPost() {
-        if (postId != null) {
-            return postBean.find(postId);
-        }
         return post;
     }
 
