@@ -37,6 +37,11 @@ public class SigninController implements Serializable {
         return "index.xhtml";
     }
 
+    public String logout() {
+        user = null;
+        return "home";
+    }
+
     public String getUsername() {
         return username;
     }

@@ -10,8 +10,15 @@
 <f:view>
     <h1>Forum</h1>
     <ul>
-        <li><h:link value="Sign in" outcome="signin.xhtml"/></li>
-        <li><h:link value="Register" outcome="register.xhtml"/></li>
+        <ui:fragment rendered="#{signinController.user == null}">
+            <li><h:link value="Sign in" outcome="signin.xhtml"/></li>
+        </ui:fragment>
+        <ui:fragment rendered="#{signinController.user == null}">
+            <li><h:link value="Register" outcome="register.xhtml"/></li>
+        </ui:fragment>
+        <h:form rendered="#{signinController.user != null}">
+            <li><h:commandLink value="Sign out" action="#{signinController.logout}"/> </li>
+        </h:form>
     </ul>
     <h:dataTable value="#{boardController.boards}" var="board">
         <h:column>
