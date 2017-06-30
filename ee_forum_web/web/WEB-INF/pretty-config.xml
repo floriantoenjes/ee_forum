@@ -31,8 +31,13 @@
 
 
     <url-mapping id="addPost">
-        <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts/add"/>
+        <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts"/>
         <view-id value="/post_form.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="editPost">
+        <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts/#{postController.postId}"/>
+        <view-id value="/edit_post_form.xhtml"/>
     </url-mapping>
 
     <!-- Begin UrlMappings

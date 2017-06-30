@@ -18,6 +18,7 @@ import java.util.List;
 public class PostController {
     private Long boardId;
     private Long threadId;
+    private Long postId;
 
     private Thread thread;
 
@@ -87,5 +88,13 @@ public class PostController {
 
     public void setThread(Thread thread) {
         this.thread = thread;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 }

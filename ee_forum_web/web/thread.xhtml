@@ -17,11 +17,17 @@
             <h:panelGrid columns="1">
                 <h:outputText value="#{post.text}"/>
             </h:panelGrid>
+            <pretty:link mappingId="editPost">
+                <f:param value="#{postController.threadId}"/>
+                <f:param value="#{postController.boardId}"/>
+                <f:param value="#{post.id}"/>
+                Edit post
+            </pretty:link>
         </h:column>
     </h:dataTable>
     <pretty:link mappingId="addPost">
-        <f:param value="#{postController.boardId}" />
-        <f:param value="#{postController.threadId}" />
+        <f:param value="#{postController.boardId}"/>
+        <f:param value="#{postController.threadId}"/>
         New post
     </pretty:link>
 </f:view>
