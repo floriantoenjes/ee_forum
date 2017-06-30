@@ -21,6 +21,9 @@ public class ThreadController {
     private List<Thread> threads;
 
     @EJB
+    private BoardBean boardBean;
+
+    @EJB
     private ThreadBean threadBean;
 
     public long getBoardId() {
@@ -45,7 +48,7 @@ public class ThreadController {
     }
 
     public Board getBoard() {
-        return board;
+        return boardBean.find(boardId);
     }
 
     public void setBoard(Board board) {

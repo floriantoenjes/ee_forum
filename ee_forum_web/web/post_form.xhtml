@@ -6,11 +6,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="#{postController.thread.name}"/>
+    <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
     <h:messages/>
     <h:form>
-        <h:inputText value="#{postController.post.text}"/>
-        <h:commandButton action="#{postController.createPost(signinController.user)}" value="Create Post"/>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="text" value="Text:"/>
+            <h:inputText id="text" value="#{postController.post.text}"/>
+            <h:commandButton action="#{postController.createPost(signinController.user)}" value="Create Post"/>
+        </h:panelGrid>
     </h:form>
 </f:view>
 </html>

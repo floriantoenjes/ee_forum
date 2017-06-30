@@ -98,7 +98,7 @@ public class PostController {
     }
 
     public Thread getThread() {
-        return thread;
+        return threadBean.find(threadId);
     }
 
     public void setThread(Thread thread) {

@@ -6,8 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <f:view>
-
-    <h:outputLabel value="#{threadController.board.name}"/>
+    <h2><h:outputLabel value="#{threadController.board.name}"/></h2>
 
     <h:dataTable value="#{threadController.threads}" var="thread">
         <h:column>

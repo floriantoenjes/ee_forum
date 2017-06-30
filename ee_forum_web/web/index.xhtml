@@ -8,8 +8,11 @@
       xmlns:pretty="http://ocpsoft.com/prettyfaces">
 <h:messages/>
 <f:view>
-    <h:outputLabel value="Forum"/>
-
+    <h1>Forum</h1>
+    <ul>
+        <li><h:link value="Sign in" outcome="signin.xhtml"/></li>
+        <li><h:link value="Register" outcome="register.xhtml"/></li>
+    </ul>
     <h:dataTable value="#{boardController.boards}" var="board">
         <h:column>
             <h:panelGrid columns="1">
@@ -17,8 +20,6 @@
                     <f:param value="#{board.id}"/>
                     #{board.name}
                 </pretty:link>
-                <h:link value="Sign in" outcome="signin.xhtml"/>
-                <h:link value="Register" outcome="register.xhtml"/>
             </h:panelGrid>
         </h:column>
     </h:dataTable>
