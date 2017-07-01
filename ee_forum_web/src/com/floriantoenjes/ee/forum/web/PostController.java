@@ -9,14 +9,17 @@ import com.floriantoenjes.ee.forum.ejb.model.User;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Named
-@RequestScoped
-public class PostController {
+@ViewScoped
+public class PostController implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long boardId;
     private Long threadId;
@@ -50,9 +53,6 @@ public class PostController {
     }
 
     public String editPost() {
-        String text = post.getText();
-        post = postBean.find(postId);
-        post.setText(text);
         postBean.editPost(post);
 
         return "pretty:viewThread";
@@ -81,8 +81,7 @@ public class PostController {
     }
 
     public List<Post> getPosts() {
-        posts = postBean.findByThreadId(threadId);
-        return posts;
+        return postBean.findByThreadId(threadId);
     }
 
     public void setPosts(List<Post> posts) {
