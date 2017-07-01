@@ -73,6 +73,12 @@ public class ThreadController {
         return "pretty:viewBoard";
     }
 
+    public String deleteThread() {
+        threadBean.deleteThread(threadId);
+
+        return "pretty:viewBoard";
+    }
+
     public long getBoardId() {
         return boardId;
     }

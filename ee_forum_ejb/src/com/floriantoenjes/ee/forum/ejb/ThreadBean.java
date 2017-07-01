@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -37,5 +38,11 @@ public class ThreadBean {
 
     public void editThread(Thread thread) {
         em.merge(thread);
+    }
+
+    public void deleteThread(Long id) {
+        Query query = em.createQuery("DELETE FROM Thread t WHERE t.id = :id");
+        query.setParameter("id", id);
+        query.executeUpdate();
     }
 }

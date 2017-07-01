@@ -40,6 +40,5 @@ public class PostBean {
         Query query = em.createQuery("DELETE FROM Post p WHERE p.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
-
     }
 }

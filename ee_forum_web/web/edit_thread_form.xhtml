@@ -17,6 +17,7 @@
             <h:outputLabel for="name" value="Title:"/>
             <h:inputText id="name" value="#{threadController.thread.name}"/>
             <h:commandButton action="#{threadController.editThread}" value="Edit thread"/>
+            <h:commandButton action="#{threadController.deleteThread}" value="Delete thread"/>
         </h:panelGrid>
     </h:form>
 </f:view>
