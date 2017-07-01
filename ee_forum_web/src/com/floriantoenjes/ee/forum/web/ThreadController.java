@@ -9,15 +9,17 @@ import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Named
-@RequestScoped
-public class ThreadController {
+@ViewScoped
+public class ThreadController implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private Long threadId;
 
@@ -64,10 +66,6 @@ public class ThreadController {
     }
 
     public String editThread() {
-        String name = thread.getName();
-        thread = threadBean.find(threadId);
-        thread.setName(name);
-
         threadBean.editThread(thread);
 
         return "pretty:viewBoard";

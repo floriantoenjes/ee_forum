@@ -3,13 +3,15 @@ package com.floriantoenjes.ee.forum.ejb.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(schema = "FORUM", name = "THREAD")
-public class Thread {
+public class Thread implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @SequenceGenerator(
