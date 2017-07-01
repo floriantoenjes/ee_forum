@@ -9,6 +9,12 @@
 <f:view>
     <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
 
+    <pretty:link mappingId="editThread">
+        <f:param value="#{postController.boardId}"/>
+        <f:param value="#{postController.threadId}"/>
+        Edit Thread
+    </pretty:link>
+
     <h:dataTable value="#{postController.posts}" var="post">
         <h:column>
             <h:panelGrid columns="1">

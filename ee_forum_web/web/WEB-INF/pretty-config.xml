@@ -34,6 +34,10 @@
         <view-id value="/thread_form.xhtml"/>
     </url-mapping>
 
+    <url-mapping id="editThread">
+        <pattern value="/board/#{threadController.boardId}/thread/#{threadController.threadId}/edit"/>
+        <view-id value="/edit_thread_form.xhtml"/>
+    </url-mapping>
 
     <url-mapping id="addPost">
         <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts"/>

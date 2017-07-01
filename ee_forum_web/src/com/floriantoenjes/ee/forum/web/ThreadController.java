@@ -19,6 +19,8 @@ import java.util.List;
 @RequestScoped
 public class ThreadController {
 
+    private Long threadId;
+
     private Long boardId;
 
     private Board board;
@@ -40,6 +42,10 @@ public class ThreadController {
     @EJB
     private PostBean postBean;
 
+    public void initThread() {
+        thread = threadBean.find(threadId);
+    }
+
     public String createThread(User user) {
 
         thread.setAuthor(user);
@@ -53,6 +59,16 @@ public class ThreadController {
         post.setCreated(new Date());
 
         postBean.createPost(post);
+
+        return "pretty:viewBoard";
+    }
+
+    public String editThread() {
+        String name = thread.getName();
+        thread = threadBean.find(threadId);
+        thread.setName(name);
+
+        threadBean.editThread(thread);
 
         return "pretty:viewBoard";
     }
@@ -100,5 +116,13 @@ public class ThreadController {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public Long getThreadId() {
+        return threadId;
+    }
+
+    public void setThreadId(Long threadId) {
+        this.threadId = threadId;
     }
 }

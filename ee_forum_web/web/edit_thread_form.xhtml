@@ -7,17 +7,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <f:metadata>
-        <f:viewAction action="#{postController.initPost}"/>
+        <f:viewAction action="#{threadController.initThread}"/>
     </f:metadata>
 
-    <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
+    <h2><h:outputLabel value="#{threadController.thread.name}"/></h2>
     <h:messages/>
     <h:form>
         <h:panelGrid columns="2">
-            <h:outputLabel for="text" value="Text:"/>
-            <h:inputText id="text" value="#{postController.post.text}"/>
-            <h:commandButton action="#{postController.editPost}" value="Edit Post"/>
-            <h:commandButton action="#{postController.deletePost}" value="Delete Post"/>
+            <h:outputLabel for="name" value="Title:"/>
+            <h:inputText id="name" value="#{threadController.thread.name}"/>
+            <h:commandButton action="#{threadController.editThread}" value="Edit thread"/>
         </h:panelGrid>
     </h:form>
 </f:view>

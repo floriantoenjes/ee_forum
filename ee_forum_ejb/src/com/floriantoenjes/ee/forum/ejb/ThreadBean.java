@@ -34,4 +34,8 @@ public class ThreadBean {
         em.persist(thread);
         return thread;
     }
+
+    public void editThread(Thread thread) {
+        em.merge(thread);
+    }
 }
