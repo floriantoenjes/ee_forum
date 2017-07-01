@@ -26,7 +26,7 @@ public class RegisterController {
         FacesContext fc = FacesContext.getCurrentInstance();
         ELContext elContext = fc.getELContext();
         SignInController signInController = (SignInController) fc.getApplication().getELResolver()
-                .getValue(elContext, null, "signinController");
+                .getValue(elContext, null, "signInController");
 
         signInController.setUser(user);
 
