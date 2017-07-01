@@ -11,7 +11,7 @@
     <h:form>
         <h:panelGrid columns="2">
             <h:outputLabel for="text" value="Text:"/>
-            <h:inputText id="text" value="#{postController.post.text}"/>
+            <h:inputTextarea id="text" value="#{postController.post.text}"/>
             <h:commandButton action="#{postController.createPost(signInController.user)}" value="Create Post"/>
         </h:panelGrid>
     </h:form>
