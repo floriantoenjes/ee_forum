@@ -30,7 +30,8 @@ public class ThreadBean {
         return query.getResultList();
     }
 
-    public void createThread(Thread thread) {
+    public Thread createThread(Thread thread) {
         em.persist(thread);
+        return thread;
     }
 }

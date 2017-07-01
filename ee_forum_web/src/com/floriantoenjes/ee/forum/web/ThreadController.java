@@ -1,8 +1,10 @@
 package com.floriantoenjes.ee.forum.web;
 
 import com.floriantoenjes.ee.forum.ejb.BoardBean;
+import com.floriantoenjes.ee.forum.ejb.PostBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
 import com.floriantoenjes.ee.forum.ejb.model.Board;
+import com.floriantoenjes.ee.forum.ejb.model.Post;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
@@ -24,6 +26,9 @@ public class ThreadController {
     private List<Thread> threads;
 
     @Inject
+    private Post post;
+
+    @Inject
     private Thread thread;
 
     @EJB
@@ -32,12 +37,22 @@ public class ThreadController {
     @EJB
     private ThreadBean threadBean;
 
+    @EJB
+    private PostBean postBean;
+
     public String createThread(User user) {
+
         thread.setAuthor(user);
         thread.setBoard(getBoard());
         thread.setCreated(new Date());
 
-        threadBean.createThread(thread);
+        thread = threadBean.createThread(thread);
+
+        post.setAuthor(user);
+        post.setThread(thread);
+        post.setCreated(new Date());
+
+        postBean.createPost(post);
 
         return "pretty:viewBoard";
     }
@@ -77,5 +92,13 @@ public class ThreadController {
 
     public void setThread(Thread thread) {
         this.thread = thread;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
