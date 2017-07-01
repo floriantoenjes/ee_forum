@@ -19,7 +19,7 @@
             </h:panelGrid>
         </h:column>
     </h:dataTable>
-    <pretty:link mappingId="addThread">
+    <pretty:link mappingId="addThread" rendered="#{signInController.user != null}">
         <f:param value="#{threadController.boardId}"/>
         New thread
     </pretty:link>
