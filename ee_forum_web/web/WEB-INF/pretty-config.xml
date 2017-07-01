@@ -29,6 +29,11 @@
         <view-id value="/thread.xhtml"/>
     </url-mapping>
 
+    <url-mapping id="addThread">
+        <pattern value="/board/#{threadController.boardId}/thread/"/>
+        <view-id value="/thread_form.xhtml"/>
+    </url-mapping>
+
 
     <url-mapping id="addPost">
         <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts"/>

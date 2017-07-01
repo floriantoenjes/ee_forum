@@ -29,4 +29,8 @@ public class ThreadBean {
 
         return query.getResultList();
     }
+
+    public void createThread(Thread thread) {
+        em.persist(thread);
+    }
 }
