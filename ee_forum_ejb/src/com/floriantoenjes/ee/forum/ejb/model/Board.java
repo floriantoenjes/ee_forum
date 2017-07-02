@@ -34,7 +34,7 @@ public class Board {
 
     public Board() {}
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Thread> threads;
 
     public List<Thread> getThreads() {
