@@ -40,9 +40,7 @@ public class ThreadBean {
         em.merge(thread);
     }
 
-    public void deleteThread(Long id) {
-        Query query = em.createQuery("DELETE FROM Thread t WHERE t.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+    public void deleteThread(Thread thread) {
+        em.remove(em.merge(thread));
     }
 }

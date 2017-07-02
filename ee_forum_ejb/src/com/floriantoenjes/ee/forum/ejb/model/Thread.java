@@ -43,7 +43,7 @@ public class Thread implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;
 
-    @OneToMany(mappedBy = "thread")
+    @OneToMany(mappedBy = "thread", cascade = CascadeType.REMOVE)
     private List<Post> posts;
 
     public Thread() {}

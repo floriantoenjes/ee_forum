@@ -72,7 +72,7 @@ public class ThreadController implements Serializable {
     }
 
     public String deleteThread() {
-        threadBean.deleteThread(threadId);
+        threadBean.deleteThread(thread);
 
         return "pretty:viewBoard";
     }
