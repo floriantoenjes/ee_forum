@@ -7,7 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
     <h:form id="signinForm">
-        <h:message for="signinForm"/>
         <h:panelGrid columns="2">
             <f:facet name="header">
                 <h:outputText value="Sign In"/>
@@ -16,6 +15,8 @@
             <h:inputText id="username" value="#{signInController.username}"/>
             <h:outputLabel for="password" value="Password:"/>
             <h:inputSecret id="password" value="#{signInController.password}"/>
+            <h:column/>
+            <h:message for="signinForm" />
             <h:commandButton action="#{signInController.signin}" value="Signin"/>
         </h:panelGrid>
     </h:form>

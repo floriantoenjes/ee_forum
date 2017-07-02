@@ -27,16 +27,16 @@ public class User implements Serializable {
     )
     private Long id;
 
-    @NotNull
+    @NotNull(message = "is required")
     @Size(min = 3, max = 40)
     @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "has to be valid")
     private String email;
 
-    @NotNull
+    @NotNull(message = "is required")
     @Size(min = 6, max = 10)
     private String password;
 
-    @NotNull
+    @NotNull(message = "is required")
     @Size(min = 4, max = 20)
     private String username;
 
