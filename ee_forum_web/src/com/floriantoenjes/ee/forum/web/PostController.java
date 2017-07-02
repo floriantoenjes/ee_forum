@@ -57,7 +57,7 @@ public class PostController implements Serializable {
     }
 
     public String deletePost() {
-        postBean.deletePost(postId);
+        postBean.deletePost(post);
 
         return "pretty:viewThread";
     }

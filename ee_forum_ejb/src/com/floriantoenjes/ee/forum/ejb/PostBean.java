@@ -36,9 +36,7 @@ public class PostBean {
         em.merge(post);
     }
 
-    public void deletePost(Long id) {
-        Query query = em.createQuery("DELETE FROM Post p WHERE p.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+    public void deletePost(Post post) {
+        em.remove(em.merge(post));
     }
 }
