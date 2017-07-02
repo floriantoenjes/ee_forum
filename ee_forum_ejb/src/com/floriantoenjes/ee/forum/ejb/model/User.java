@@ -28,16 +28,16 @@ public class User implements Serializable {
     private Long id;
 
     @NotNull(message = "is required")
-    @Size(min = 3, max = 40)
-    @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "has to be valid")
+    @Size(min = 3, max = 40, message = "has to be between 3 and 40 characters")
+    @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "has to be a valid email address")
     private String email;
 
     @NotNull(message = "is required")
-    @Size(min = 6, max = 10)
+    @Size(min = 6, max = 10, message = "has to be between 6 and 10 characters")
     private String password;
 
     @NotNull(message = "is required")
-    @Size(min = 4, max = 20)
+    @Size(min = 4, max = 20, message = "has to be between 4 and 20 characters")
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
