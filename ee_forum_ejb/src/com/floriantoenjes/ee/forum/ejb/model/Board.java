@@ -34,7 +34,7 @@ public class Board {
 
     public Board() {}
 
-    @OneToMany
+    @OneToMany(mappedBy = "board")
     private List<Thread> threads;
 
     public List<Thread> getThreads() {
