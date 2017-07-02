@@ -16,6 +16,7 @@
     </pretty:link>
 
     <h:dataTable value="#{postController.posts}" var="post">
+        <f:facet name="header">Posts</f:facet>
         <h:column>
             <h:panelGrid columns="1">
                 <h:outputText value="#{post.text}"/>
