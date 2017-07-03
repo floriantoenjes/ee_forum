@@ -12,17 +12,22 @@
         <h:dataTable value="#{threadController.threads}" var="thread">
             <f:facet name="header">Threads</f:facet>
             <h:column>
-                <h:panelGrid columns="3">
-                    <pretty:link mappingId="viewThread">
-                        <f:param value="#{threadController.boardId}"/>
-                        <f:param value="#{thread.id}"/>
-                        #{thread.name}
-                    </pretty:link>
-                    <h:outputText value="by #{thread.author.username} at"/>
-                    <h:outputText value="#{thread.created}">
-                        <f:convertDateTime dateStyle="short" type="both"/>
-                    </h:outputText>
-                </h:panelGrid>
+                <f:facet name="header">Name</f:facet>
+                <pretty:link mappingId="viewThread">
+                    <f:param value="#{threadController.boardId}"/>
+                    <f:param value="#{thread.id}"/>
+                    #{thread.name}
+                </pretty:link>
+            </h:column>
+            <h:column>
+                <f:facet name="header">by user</f:facet>
+                <h:outputText value="#{thread.author.username}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Created at</f:facet>
+                <h:outputText value="#{thread.created}">
+                    <f:convertDateTime dateStyle="short" type="both"/>
+                </h:outputText>
             </h:column>
         </h:dataTable>
         <pretty:link mappingId="addThread" rendered="#{signInController.user != null}">
