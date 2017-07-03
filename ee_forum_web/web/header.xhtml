@@ -8,6 +8,7 @@
 <f:view>
     <h1>Forum</h1>
     <ul>
+        <li><h:link value="Home" outcome="pretty:home"/> </li>
         <ui:fragment rendered="#{signInController.user == null}">
             <li><h:link value="Sign in" outcome="signin.xhtml"/></li>
         </ui:fragment>
