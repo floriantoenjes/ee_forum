@@ -8,12 +8,16 @@
         <h:dataTable value="#{threadController.threads}" var="thread">
             <f:facet name="header">Threads</f:facet>
             <h:column>
-                <h:panelGrid columns="1">
+                <h:panelGrid columns="3">
                     <pretty:link mappingId="viewThread">
                         <f:param value="#{threadController.boardId}"/>
                         <f:param value="#{thread.id}"/>
                         #{thread.name}
                     </pretty:link>
+                    <h:outputText value="by #{thread.author.username} at"/>
+                    <h:outputText value="#{thread.created}">
+                        <f:convertDateTime dateStyle="short" type="both"/>
+                    </h:outputText>
                 </h:panelGrid>
             </h:column>
         </h:dataTable>

@@ -15,15 +15,20 @@
         <h:dataTable value="#{postController.posts}" var="post">
             <f:facet name="header">Posts</f:facet>
             <h:column>
-                <h:panelGrid columns="1">
-                    <h:outputText value="#{post.text}"/>
+                <h:outputText value="#{post.text}"/>
+                <h:panelGrid columns="3">
+                    <h:outputText value="by #{post.author.username} at "/>
+                    <h:outputText value="#{post.created}">
+                        <f:convertDateTime dateStyle="short" type="both"/>
+                    </h:outputText>
+
+                    <pretty:link mappingId="editPost">
+                        <f:param value="#{postController.boardId}"/>
+                        <f:param value="#{postController.threadId}"/>
+                        <f:param value="#{post.id}"/>
+                        Edit post
+                    </pretty:link>
                 </h:panelGrid>
-                <pretty:link mappingId="editPost">
-                    <f:param value="#{postController.boardId}"/>
-                    <f:param value="#{postController.threadId}"/>
-                    <f:param value="#{post.id}"/>
-                    Edit post
-                </pretty:link>
             </h:column>
         </h:dataTable>
         <pretty:link mappingId="addPost" rendered="#{signInController.user != null}">
