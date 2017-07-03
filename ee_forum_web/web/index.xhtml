@@ -1,35 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pretty="http://ocpsoft.com/prettyfaces">
-<h:messages/>
-<f:view>
-    <h1>Forum</h1>
-    <ul>
-        <ui:fragment rendered="#{signInController.user == null}">
-            <li><h:link value="Sign in" outcome="signin.xhtml"/></li>
-        </ui:fragment>
-        <ui:fragment rendered="#{signInController.user == null}">
-            <li><h:link value="Register" outcome="register.xhtml"/></li>
-        </ui:fragment>
-        <h:form rendered="#{signInController.user != null}">
-            <li><h:commandLink value="Sign out" action="#{signInController.logout}"/> </li>
-        </h:form>
-    </ul>
-    <h:dataTable value="#{boardController.boards}" var="board">
-        <f:facet name="header">Boards</f:facet>
-        <h:column>
-            <h:panelGrid columns="1">
-                <pretty:link mappingId="viewBoard">
-                    <f:param value="#{board.id}"/>
-                    #{board.name}
-                </pretty:link>
-            </h:panelGrid>
-        </h:column>
-    </h:dataTable>
-</f:view>
-</html>
+<ui:composition template="template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pretty="http://ocpsoft.com/prettyfaces">
+    <ui:define name="content">
+        <h:messages/>
+        <h:dataTable value="#{boardController.boards}" var="board">
+            <f:facet name="header">Boards</f:facet>
+            <h:column>
+                <h:panelGrid columns="1">
+                    <pretty:link mappingId="viewBoard">
+                        <f:param value="#{board.id}"/>
+                        #{board.name}
+                    </pretty:link>
+                </h:panelGrid>
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>
