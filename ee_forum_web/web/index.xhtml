@@ -8,7 +8,6 @@
             <f:event type="preRenderView" listener="#{boardController.loadBoards}"/>
         </f:metadata>
 
-        <h:messages/>
         <h:dataTable value="#{boardController.boards}" var="board">
             <f:facet name="header">Boards</f:facet>
             <h:column>
