@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h1 id="title">Forum</h1>
-    <ul>
+    <ul class="navbar">
         <li><h:link value="Home" outcome="pretty:home"/> </li>
         <ui:fragment rendered="#{signInController.user == null}">
             <li><h:link value="Sign in" outcome="signin.xhtml"/></li>

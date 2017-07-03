@@ -5,3 +5,14 @@ body {
 #title {
     text-align: center;
 }
+
+.navbar {
+    width: 50%;
+    margin: 0 auto;
+    padding-left: 0;
+    text-align: center;
+}
+
+.navbar li {
+    display: inline-block;
+}
