@@ -40,6 +40,10 @@ public class PostController implements Serializable {
         post = postBean.find(postId);
     }
 
+    public void loadPosts() {
+        posts = postBean.findByThreadId(threadId);
+    }
+
     public String createPost(User author) {
         post.setThread(threadBean.find(threadId));
         post.setAuthor(author);
@@ -79,7 +83,7 @@ public class PostController implements Serializable {
     }
 
     public List<Post> getPosts() {
-        return postBean.findByThreadId(threadId);
+        return posts;
     }
 
     public void setPosts(List<Post> posts) {

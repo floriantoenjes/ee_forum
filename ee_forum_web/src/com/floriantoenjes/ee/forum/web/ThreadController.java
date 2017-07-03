@@ -48,6 +48,10 @@ public class ThreadController implements Serializable {
         thread = threadBean.find(threadId);
     }
 
+    public void loadThreads() {
+        threads = threadBean.findByBoardId(boardId);
+    }
+
     public String createThread(User user) {
 
         thread.setAuthor(user);
@@ -86,7 +90,6 @@ public class ThreadController implements Serializable {
     }
 
     public List<Thread> getThreads() {
-        threads = threadBean.findByBoardId(boardId);
         return threads;
     }
 

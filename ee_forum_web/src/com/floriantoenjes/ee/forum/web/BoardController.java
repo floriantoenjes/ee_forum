@@ -21,8 +21,11 @@ public class BoardController {
 
     }
 
-    public List<Board> getBoards() {
+    public void loadBoards() {
         boards = boardBean.findAll();
+    }
+
+    public List<Board> getBoards() {
         return boards;
     }
 
