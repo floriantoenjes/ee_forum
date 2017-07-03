@@ -11,9 +11,6 @@
 
     -->
 
-
-    // These are examples of URL mappings, and should be customized for your application.
-
     <url-mapping id="home">
         <pattern value="/"/>
         <view-id value="/index.xhtml"/>
