@@ -12,7 +12,7 @@
         <h:dataTable value="#{threadController.threads}" var="thread">
             <f:facet name="header">Threads</f:facet>
             <h:column>
-                <f:facet name="header">Name</f:facet>
+                <f:facet name="header">Thread</f:facet>
                 <pretty:link mappingId="viewThread">
                     <f:param value="#{threadController.boardId}"/>
                     <f:param value="#{thread.id}"/>
@@ -20,7 +20,7 @@
                 </pretty:link>
             </h:column>
             <h:column>
-                <f:facet name="header">by user</f:facet>
+                <f:facet name="header">by User</f:facet>
                 <h:outputText value="#{thread.author.username}"/>
             </h:column>
             <h:column>
