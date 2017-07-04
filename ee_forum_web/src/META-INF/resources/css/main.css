@@ -6,6 +6,10 @@ body {
     text-align: center;
 }
 
+#subtitle {
+    text-align: center;
+}
+
 .navbar {
     width: 50%;
     margin: 0 auto;
@@ -15,4 +19,12 @@ body {
 
 .navbar li {
     display: inline-block;
+}
+
+.table {
+    margin: 0 auto;
+}
+
+.wrapper {
+    text-align: center;
 }

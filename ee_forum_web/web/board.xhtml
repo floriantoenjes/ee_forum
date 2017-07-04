@@ -7,9 +7,9 @@
             <f:event type="preRenderView" listener="#{threadController.loadThreads}"/>
         </f:metadata>
 
-        <h2><h:outputLabel value="#{threadController.board.name}"/></h2>
+        <h2 id="subtitle"><h:outputLabel value="#{threadController.board.name}"/></h2>
 
-        <h:dataTable value="#{threadController.threads}" var="thread">
+        <h:dataTable styleClass="table" value="#{threadController.threads}" var="thread">
             <f:facet name="header">Threads</f:facet>
             <h:column>
                 <f:facet name="header">Thread</f:facet>

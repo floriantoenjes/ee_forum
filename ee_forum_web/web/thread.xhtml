@@ -8,15 +8,17 @@
             <f:event type="preRenderView" listener="#{postController.loadPosts}"/>
         </f:metadata>
 
-        <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
+        <div class="wrapper">
+            <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
 
-        <pretty:link mappingId="editThread">
-            <f:param value="#{postController.boardId}"/>
-            <f:param value="#{postController.threadId}"/>
-            Edit Thread
-        </pretty:link>
+            <pretty:link mappingId="editThread">
+                <f:param value="#{postController.boardId}"/>
+                <f:param value="#{postController.threadId}"/>
+                Edit Thread
+            </pretty:link>
+        </div>
 
-        <h:dataTable value="#{postController.posts}" var="post">
+        <h:dataTable styleClass="table" value="#{postController.posts}" var="post">
             <f:facet name="header">Posts</f:facet>
             <h:column>
                 <h:outputText value="#{post.text}"/>

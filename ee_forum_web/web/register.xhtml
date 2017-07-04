@@ -4,7 +4,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="content">
         <h:form>
-            <h:panelGrid columns="3">
+            <h:panelGrid styleClass="table" columns="3">
                 <f:facet name="header">
                     <h:outputText value="Register"/>
                 </f:facet>
@@ -17,8 +17,8 @@
                 <h:outputLabel for="username" value="Username:"/>
                 <h:inputText id="username" value="#{registerController.user.username}"/>
                 <h:message for="username"/>
+                <h:commandButton action="#{registerController.register}" value="Register"/>
             </h:panelGrid>
-            <h:commandButton action="#{registerController.register}" value="Register"/>
         </h:form>
     </ui:define>
 </ui:composition>
