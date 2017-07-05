@@ -38,10 +38,12 @@
                 </h:panelGrid>
             </h:column>
         </h:dataTable>
-        <pretty:link mappingId="addPost" rendered="#{signInController.user != null}">
-            <f:param value="#{postController.boardId}"/>
-            <f:param value="#{postController.threadId}"/>
-            New post
-        </pretty:link>
+        <div class="wrapper">
+            <pretty:link mappingId="addPost" rendered="#{signInController.user != null}">
+                <f:param value="#{postController.boardId}"/>
+                <f:param value="#{postController.threadId}"/>
+                New post
+            </pretty:link>
+        </div>
     </ui:define>
 </ui:composition>
