@@ -6,10 +6,11 @@
         <f:metadata>
             <f:viewAction action="#{postController.initPost}"/>
         </f:metadata>
-
-        <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
-        <h:messages/>
-        <h:form>
+        <div class="wrapper">
+            <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
+            <h:messages/>
+        </div>
+        <h:form styleClass="center-form">
             <h:panelGrid columns="2">
                 <h:outputLabel for="text" value="Text:"/>
                 <h:inputTextarea id="text" value="#{postController.post.text}"/>
