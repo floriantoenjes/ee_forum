@@ -14,11 +14,13 @@
     <url-mapping id="home">
         <pattern value="/"/>
         <view-id value="/index.xhtml"/>
+        <action>#{boardController.loadBoards}</action>
     </url-mapping>
 
     <url-mapping id="viewBoard">
         <pattern value="/board/#{threadController.boardId}"/>
         <view-id value="/board.xhtml"/>
+        <action>#{threadController.loadThreads}</action>
     </url-mapping>
 
     <url-mapping id="viewThread">
@@ -44,6 +46,17 @@
     <url-mapping id="editPost">
         <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts/#{postController.postId}"/>
         <view-id value="/edit_post_form.xhtml"/>
+    </url-mapping>
+
+    <url-mapping id="editPost">
+        <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts/#{postController.postId}"/>
+        <view-id value="/edit_post_form.xhtml"/>
+    </url-mapping>
+
+
+    <url-mapping id="not-found">
+        <pattern>/not-found</pattern>
+        <view-id value="/not-found.xhtml"/>
     </url-mapping>
 
     <!-- Begin UrlMappings

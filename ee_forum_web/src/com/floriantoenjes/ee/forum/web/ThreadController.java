@@ -9,9 +9,13 @@ import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -48,8 +52,14 @@ public class ThreadController implements Serializable {
         thread = threadBean.find(threadId);
     }
 
-    public void loadThreads() {
+    public String loadThreads() {
+        board = boardBean.find(boardId);
+        if (board == null) {
+            return "pretty:not-found";
+        }
         threads = threadBean.findByBoardId(boardId);
+
+        return null;
     }
 
     public String createThread(User user) {

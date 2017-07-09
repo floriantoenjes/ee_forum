@@ -3,9 +3,6 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pretty="http://ocpsoft.com/prettyfaces">
     <ui:define name="content">
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{threadController.loadThreads}"/>
-        </f:metadata>
 
         <h2 id="subtitle"><h:outputLabel value="#{threadController.board.name}"/></h2>
 
