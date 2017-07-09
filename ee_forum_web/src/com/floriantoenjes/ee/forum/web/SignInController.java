@@ -34,7 +34,7 @@ public class SignInController implements Serializable {
             return "signin.xhtml";
         }
         fc.addMessage(null, new FacesMessage("Successfully signed in"));
-        return "index.xhtml";
+        return "pretty:home";
     }
 
     public String logout() {
