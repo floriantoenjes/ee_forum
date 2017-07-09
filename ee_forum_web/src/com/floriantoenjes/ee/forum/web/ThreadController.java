@@ -48,8 +48,13 @@ public class ThreadController implements Serializable {
     @EJB
     private PostBean postBean;
 
-    public void initThread() {
+    public String initThread() {
         thread = threadBean.find(threadId);
+        if (thread == null) {
+            return "pretty:not-found";
+        }
+
+        return null;
     }
 
     public String loadThreads() {
