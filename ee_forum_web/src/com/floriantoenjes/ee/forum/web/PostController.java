@@ -36,8 +36,12 @@ public class PostController implements Serializable {
     @EJB
     private ThreadBean threadBean;
 
-    public void initPost() {
+    public String initPost() {
         post = postBean.find(postId);
+        if (post == null) {
+            return "pretty:not-found";
+        }
+        return null;
     }
 
     public String loadPosts() {

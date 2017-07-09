@@ -48,11 +48,7 @@
     <url-mapping id="editPost">
         <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts/#{postController.postId}"/>
         <view-id value="/edit_post_form.xhtml"/>
-    </url-mapping>
-
-    <url-mapping id="editPost">
-        <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}/posts/#{postController.postId}"/>
-        <view-id value="/edit_post_form.xhtml"/>
+        <action>#{postController.initPost}</action>
     </url-mapping>
 
 
