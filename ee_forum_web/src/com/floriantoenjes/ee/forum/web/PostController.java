@@ -40,8 +40,14 @@ public class PostController implements Serializable {
         post = postBean.find(postId);
     }
 
-    public void loadPosts() {
+    public String loadPosts() {
+        thread = threadBean.find(threadId);
+        if (thread == null) {
+            return "pretty:not-found";
+        }
         posts = postBean.findByThreadId(threadId);
+
+        return null;
     }
 
     public String createPost(User author) {

@@ -26,6 +26,7 @@
     <url-mapping id="viewThread">
         <pattern value="/board/#{postController.boardId}/thread/#{postController.threadId}"/>
         <view-id value="/thread.xhtml"/>
+        <action>#{postController.loadPosts}</action>
     </url-mapping>
 
     <url-mapping id="addThread">
