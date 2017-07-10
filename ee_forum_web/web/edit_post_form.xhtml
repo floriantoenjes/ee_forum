@@ -3,9 +3,6 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="content">
-        <f:metadata>
-            <f:viewAction action="#{postController.initPost}"/>
-        </f:metadata>
         <div class="wrapper">
             <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
             <h:messages/>

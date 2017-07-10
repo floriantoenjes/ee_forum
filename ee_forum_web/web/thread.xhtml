@@ -4,9 +4,6 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:pretty="http://ocpsoft.com/prettyfaces">
     <ui:define name="content">
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{postController.loadPosts}"/>
-        </f:metadata>
 
         <div class="wrapper">
             <h2><h:outputLabel value="#{postController.thread.name}"/></h2>

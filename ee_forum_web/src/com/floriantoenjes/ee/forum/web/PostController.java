@@ -36,12 +36,22 @@ public class PostController implements Serializable {
     @EJB
     private ThreadBean threadBean;
 
-    public void initPost() {
+    public String initPost() {
         post = postBean.find(postId);
+        if (post == null) {
+            return "pretty:not-found";
+        }
+        return null;
     }
 
-    public void loadPosts() {
+    public String loadPosts() {
+        thread = threadBean.find(threadId);
+        if (thread == null) {
+            return "pretty:not-found";
+        }
         posts = postBean.findByThreadId(threadId);
+
+        return null;
     }
 
     public String createPost(User author) {
