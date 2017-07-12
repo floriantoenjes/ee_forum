@@ -39,7 +39,7 @@ public class SignInController implements Serializable {
 
     public String logout() {
         user = null;
-        return "home";
+        return "pretty:home";
     }
 
     public String getUsername() {
