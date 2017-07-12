@@ -8,7 +8,7 @@
         <div class="wrapper">
             <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
 
-            <pretty:link mappingId="editThread">
+            <pretty:link mappingId="editThread" rendered="#{signInController.user.username == postController.thread.author.username}">
                 <f:param value="#{postController.boardId}"/>
                 <f:param value="#{postController.threadId}"/>
                 Edit Thread
