@@ -57,6 +57,11 @@
         <view-id value="/not-found.xhtml"/>
     </url-mapping>
 
+    <url-mapping id="unauthorized">
+        <pattern>/unauthorized</pattern>
+        <view-id value="/unauthorized.xhtml"/>
+    </url-mapping>
+
     <!-- Begin UrlMappings
                <url-mapping id="viewCategory">
                    <pattern value="/store/#{ cat : bean.category }/" />
