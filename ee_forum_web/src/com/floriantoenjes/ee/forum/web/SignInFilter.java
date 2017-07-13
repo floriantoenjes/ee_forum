@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "/thread_form.xhtml", dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
-public class SigninFilter implements Filter {
+public class SignInFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
