@@ -17,20 +17,17 @@ public class RegisterController {
     @Inject
     private User user;
 
+    @Inject
+    private SignInController signInController;
+
     @EJB
     private UserBean userBean;
 
     public String register() {
         user = userBean.register(user);
-
-        FacesContext fc = FacesContext.getCurrentInstance();
-        ELContext elContext = fc.getELContext();
-        SignInController signInController = (SignInController) fc.getApplication().getELResolver()
-                .getValue(elContext, null, "signInController");
-
         signInController.setUser(user);
 
-        return "index.xhtml";
+        return "pretty:home";
     }
 
     public User getUser() {
