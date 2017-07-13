@@ -15,10 +15,10 @@ import javax.inject.Named;
 public class RegisterController {
 
     @Inject
-    private User user;
+    private SignInController signInController;
 
     @Inject
-    private SignInController signInController;
+    private User user;
 
     @EJB
     private UserBean userBean;
