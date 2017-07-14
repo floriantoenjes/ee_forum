@@ -1,5 +1,10 @@
 package com.floriantoenjes.ee.forum.web;
 
+import com.floriantoenjes.ee.forum.ejb.ThreadBean;
+import com.floriantoenjes.ee.forum.ejb.model.Thread;
+import com.floriantoenjes.ee.forum.ejb.model.User;
+
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -14,6 +19,9 @@ public class SignInFilter implements Filter {
 
     @Inject
     private SignInController signInController;
+
+    @EJB
+    private ThreadBean threadBean;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -35,14 +43,18 @@ public class SignInFilter implements Filter {
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
 
-        } else if (threadMatcher.find()
-                && signInController.getUser() == null) {
+        // Check if user is author of thread
+        } else if (threadMatcher.find()) {
 
             Long threadId = Long.parseLong(threadMatcher.group(1));
+            Thread thread = threadBean.find(threadId);
 
-            servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
-        } else if (path.matches("^/board/\\d+/thread/\\d+/posts/\\d+$")
-                && signInController.getUser() == null) {
+            if (signInController.getUser() == null || !signInController.getUser().getUsername().equals(thread.getAuthor().getUsername())) {
+                servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
+            }
+
+        // Check if user is author of post
+        } else if (path.matches("^/board/\\d+/thread/\\d+/posts/\\d+$") && signInController.getUser() == null) {
 
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
         }
