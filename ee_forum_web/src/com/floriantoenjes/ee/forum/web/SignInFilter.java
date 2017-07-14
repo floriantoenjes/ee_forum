@@ -52,7 +52,7 @@ public class SignInFilter implements Filter {
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
 
-        // Check if user is author of thread
+        // Check if user is author of the thread
         } else if (threadMatcher.find()) {
 
             Long threadId = Long.parseLong(threadMatcher.group(1));
@@ -62,7 +62,7 @@ public class SignInFilter implements Filter {
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
 
-        // Check if user is author of post
+        // Check if user is author of the post
         } else if (postMatcher.find()) {
 
             Long postId = Long.parseLong(postMatcher.group(1));
