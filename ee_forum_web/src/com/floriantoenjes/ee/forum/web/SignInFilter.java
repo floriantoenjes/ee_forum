@@ -4,10 +4,8 @@ import com.floriantoenjes.ee.forum.ejb.PostBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
 import com.floriantoenjes.ee.forum.ejb.model.Post;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
-import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
