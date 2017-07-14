@@ -56,7 +56,7 @@ public class SignInFilter implements Filter {
             Long threadId = Long.parseLong(threadMatcher.group(1));
             Thread thread = threadBean.find(threadId);
 
-            if (signInController.getUser() == null || !signInController.getUser().getUsername().equals(thread.getAuthor().getUsername())) {
+            if (signInController.getUser() == null || !signInController.getUser().equals(thread.getAuthor())) {
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
 
@@ -66,7 +66,7 @@ public class SignInFilter implements Filter {
             Long postId = Long.parseLong(postMatcher.group(1));
             Post post = postBean.find(postId);
 
-            if (signInController.getUser() == null || !signInController.getUser().getUsername().equals(post.getAuthor().getUsername())) {
+            if (signInController.getUser() == null || !signInController.getUser().equals(post.getAuthor())) {
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
         }
