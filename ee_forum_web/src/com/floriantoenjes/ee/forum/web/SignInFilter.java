@@ -18,11 +18,11 @@ import java.util.regex.Pattern;
 @WebFilter(urlPatterns = {"/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class SignInFilter implements Filter {
 
-    @Inject
-    private SignInController signInController;
-
     @EJB
     private PostBean postBean;
+
+    @Inject
+    private SignInController signInController;
 
     @EJB
     private ThreadBean threadBean;
@@ -50,7 +50,7 @@ public class SignInFilter implements Filter {
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
 
-        // Check if user is author of the thread
+        /* Check if user is author of the thread */
         } else if (threadMatcher.find()) {
 
             Long threadId = Long.parseLong(threadMatcher.group(1));
@@ -60,7 +60,7 @@ public class SignInFilter implements Filter {
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
 
-        // Check if user is author of the post
+        /* Check if user is author of the post */
         } else if (postMatcher.find()) {
 
             Long postId = Long.parseLong(postMatcher.group(1));
