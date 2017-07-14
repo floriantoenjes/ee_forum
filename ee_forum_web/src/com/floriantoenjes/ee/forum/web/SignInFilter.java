@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebFilter(urlPatterns = {"/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class SignInFilter implements Filter {
@@ -23,6 +25,9 @@ public class SignInFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         String path = httpServletRequest.getRequestURI().substring(httpServletRequest.getContextPath().length());
 
+        Pattern threadPattern = Pattern.compile("^/board/\\d+/thread/(\\d+)/edit$");
+        Matcher threadMatcher = threadPattern.matcher(path);
+
         if ((path.startsWith("/thread_form") || path.startsWith("/post_form"))
                 && signInController.getUser() == null) {
 
@@ -30,8 +35,13 @@ public class SignInFilter implements Filter {
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
 
-        } else if ((path.matches("^/board/\\d+/thread/\\d+/edit$")
-                || path.matches("^/board/\\d+/thread/\\d+/posts/\\d+$"))
+        } else if (threadMatcher.find()
+                && signInController.getUser() == null) {
+
+            Long threadId = Long.parseLong(threadMatcher.group(1));
+
+            servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
+        } else if (path.matches("^/board/\\d+/thread/\\d+/posts/\\d+$")
                 && signInController.getUser() == null) {
 
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
