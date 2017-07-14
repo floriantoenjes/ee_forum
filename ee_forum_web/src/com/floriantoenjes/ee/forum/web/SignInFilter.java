@@ -1,10 +1,13 @@
 package com.floriantoenjes.ee.forum.web;
 
+import com.floriantoenjes.ee.forum.ejb.PostBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
+import com.floriantoenjes.ee.forum.ejb.model.Post;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -21,6 +24,9 @@ public class SignInFilter implements Filter {
     private SignInController signInController;
 
     @EJB
+    private PostBean postBean;
+
+    @EJB
     private ThreadBean threadBean;
 
     @Override
@@ -35,6 +41,9 @@ public class SignInFilter implements Filter {
 
         Pattern threadPattern = Pattern.compile("^/board/\\d+/thread/(\\d+)/edit$");
         Matcher threadMatcher = threadPattern.matcher(path);
+
+        Pattern postPattern = Pattern.compile("^/board/\\d+/thread/\\d+/posts/(\\d+)$");
+        Matcher postMatcher = postPattern.matcher(path);
 
         if ((path.startsWith("/thread_form") || path.startsWith("/post_form"))
                 && signInController.getUser() == null) {
@@ -54,9 +63,14 @@ public class SignInFilter implements Filter {
             }
 
         // Check if user is author of post
-        } else if (path.matches("^/board/\\d+/thread/\\d+/posts/\\d+$") && signInController.getUser() == null) {
+        } else if (postMatcher.find()) {
 
-            servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
+            Long postId = Long.parseLong(postMatcher.group(1));
+            Post post = postBean.find(postId);
+
+            if (signInController.getUser() == null || !signInController.getUser().getUsername().equals(post.getAuthor().getUsername())) {
+                servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
+            }
         }
 
         filterChain.doFilter(servletRequest, servletResponse);
