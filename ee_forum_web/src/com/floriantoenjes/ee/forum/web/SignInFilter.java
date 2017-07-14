@@ -29,7 +29,8 @@ public class SignInFilter implements Filter {
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
-        } else if (path.matches("^/board/\\d+/thread/\\d+/edit$")) {
+
+        } else if (path.matches("^/board/\\d+/thread/\\d+/edit$") && signInController.getUser() == null) {
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
         }
 
