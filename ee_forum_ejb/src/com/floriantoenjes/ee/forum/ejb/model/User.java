@@ -96,6 +96,10 @@ public class User implements Serializable {
         return roles.add(role);
     }
 
+    public boolean hasRole(String role) {
+        return roles.contains(role);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
