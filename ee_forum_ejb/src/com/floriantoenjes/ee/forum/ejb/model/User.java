@@ -96,8 +96,8 @@ public class User implements Serializable {
         return roles.add(role);
     }
 
-    public boolean hasRole(String role) {
-        return roles.contains(role);
+    public boolean hasRole(String roleName) {
+        return roles.stream().anyMatch(r -> r.getName().equals(roleName));
     }
 
     @Override
