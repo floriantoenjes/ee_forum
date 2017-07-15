@@ -21,11 +21,11 @@ public class SignInFilter implements Filter {
     @EJB
     private PostBean postBean;
 
-    @Inject
-    private SignInController signInController;
-
     @EJB
     private ThreadBean threadBean;
+
+    @Inject
+    private SignInController signInController;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
