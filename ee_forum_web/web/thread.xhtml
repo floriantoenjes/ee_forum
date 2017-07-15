@@ -26,7 +26,7 @@
                         <f:convertDateTime dateStyle="short" type="both"/>
                     </h:outputText>
 
-                    <pretty:link mappingId="editPost" rendered="#{signInController.user.username == post.author.username}">
+                    <pretty:link mappingId="editPost" rendered="#{signInController.user.equals(post.author)}">
                         <f:param value="#{postController.boardId}"/>
                         <f:param value="#{postController.threadId}"/>
                         <f:param value="#{post.id}"/>
