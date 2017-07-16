@@ -36,6 +36,7 @@ public class SignInFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
         String path = httpServletRequest.getRequestURI().substring(httpServletRequest.getContextPath().length());
 
         Pattern threadPattern = Pattern.compile("^/board/\\d+/thread/(\\d+)/edit$");
@@ -54,7 +55,6 @@ public class SignInFilter implements Filter {
         } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form"))
                 && user == null) {
 
-            HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
 
@@ -65,6 +65,7 @@ public class SignInFilter implements Filter {
             Thread thread = threadBean.find(threadId);
 
             if (user == null || !signInController.getUser().equals(thread.getAuthor())) {
+                httpServletResponse.setStatus(403);
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
 
@@ -75,6 +76,7 @@ public class SignInFilter implements Filter {
             Post post = postBean.find(postId);
 
             if (user == null || !signInController.getUser().equals(post.getAuthor())) {
+                httpServletResponse.setStatus(403);
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
         }
