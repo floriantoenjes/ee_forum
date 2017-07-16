@@ -52,8 +52,7 @@ public class SignInFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
 
-        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form"))
-                && user == null) {
+        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form")) && user == null) {
 
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
