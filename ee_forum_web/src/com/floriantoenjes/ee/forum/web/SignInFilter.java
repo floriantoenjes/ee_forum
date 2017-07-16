@@ -4,6 +4,7 @@ import com.floriantoenjes.ee.forum.ejb.PostBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
 import com.floriantoenjes.ee.forum.ejb.model.Post;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
+import com.floriantoenjes.ee.forum.ejb.model.User;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -43,8 +44,15 @@ public class SignInFilter implements Filter {
         Pattern postPattern = Pattern.compile("^/board/\\d+/thread/\\d+/posts/(\\d+)$");
         Matcher postMatcher = postPattern.matcher(path);
 
-        if ((path.startsWith("/thread_form") || path.startsWith("/post_form"))
-                && signInController.getUser() == null) {
+        User user = signInController.getUser();
+
+        if (user != null && user.hasRole("ADMIN")) {
+
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+
+        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form"))
+                && user == null) {
 
             HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
             httpServletResponse.setStatus(401);
@@ -56,7 +64,7 @@ public class SignInFilter implements Filter {
             Long threadId = Long.parseLong(threadMatcher.group(1));
             Thread thread = threadBean.find(threadId);
 
-            if (signInController.getUser() == null || !signInController.getUser().equals(thread.getAuthor())) {
+            if (user == null || !signInController.getUser().equals(thread.getAuthor())) {
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
 
@@ -66,7 +74,7 @@ public class SignInFilter implements Filter {
             Long postId = Long.parseLong(postMatcher.group(1));
             Post post = postBean.find(postId);
 
-            if (signInController.getUser() == null || !signInController.getUser().equals(post.getAuthor())) {
+            if (user == null || !signInController.getUser().equals(post.getAuthor())) {
                 servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
             }
         }
