@@ -65,7 +65,7 @@ public class SignInFilter implements Filter {
 
             if (user == null || !signInController.getUser().equals(thread.getAuthor())) {
                 httpServletResponse.setStatus(403);
-                servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
+                servletRequest.getRequestDispatcher("/forbidden.xhtml").forward(servletRequest, servletResponse);
             }
 
         /* Check if user is author of the post */
@@ -76,7 +76,7 @@ public class SignInFilter implements Filter {
 
             if (user == null || !signInController.getUser().equals(post.getAuthor())) {
                 httpServletResponse.setStatus(403);
-                servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
+                servletRequest.getRequestDispatcher("/forbidden.xhtml").forward(servletRequest, servletResponse);
             }
         }
 
