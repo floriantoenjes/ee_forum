@@ -4,9 +4,11 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:pretty="http://ocpsoft.com/prettyfaces">
     <ui:define name="content">
+        <div class="wrapper">
+            <h2><h:outputLabel value="Boards"/></h2>
+        </div>
 
         <h:dataTable styleClass="table" value="#{boardController.boards}" var="board">
-            <f:facet name="header">Boards</f:facet>
             <h:column>
                 <h:panelGrid columns="1">
                     <pretty:link mappingId="viewBoard">

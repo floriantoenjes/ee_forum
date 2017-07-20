@@ -23,6 +23,18 @@ body {
 
 .table {
     margin: 0 auto;
+    border: 1px solid black;
+}
+
+.table-even-row {
+    background-color: #E5E5E5;
+}
+
+.table-odd-row {
+}
+
+.table td {
+    padding: 0.5em;
 }
 
 .wrapper {

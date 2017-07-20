@@ -15,7 +15,7 @@
             </pretty:link>
         </div>
 
-        <h:dataTable styleClass="table" value="#{postController.posts}" var="post">
+        <h:dataTable styleClass="table" value="#{postController.posts}" var="post" rowClasses="table-even-row, table-odd-row">
             <f:facet name="header">Posts</f:facet>
             <h:column>
                 <h:outputText value="#{post.text}"/>
