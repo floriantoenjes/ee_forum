@@ -60,7 +60,7 @@ public class SignInFilter implements Filter {
 
             servletRequest.getRequestDispatcher("/").forward(servletRequest, servletResponse);
 
-        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form")) && user == null) {
+        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form") || path.startsWith("/control-center")) && user == null) {
 
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);
