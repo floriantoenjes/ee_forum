@@ -2,6 +2,7 @@ package com.floriantoenjes.ee.forum.web;
 
 import com.floriantoenjes.ee.forum.ejb.PostBean;
 import com.floriantoenjes.ee.forum.ejb.ThreadBean;
+import com.floriantoenjes.ee.forum.ejb.model.Board;
 import com.floriantoenjes.ee.forum.ejb.model.Post;
 import com.floriantoenjes.ee.forum.ejb.model.Thread;
 import com.floriantoenjes.ee.forum.ejb.model.User;
@@ -22,6 +23,8 @@ public class PostController implements Serializable {
     private Long boardId;
     private Long threadId;
     private Long postId;
+
+    private Board board;
 
     private Thread thread;
 
@@ -49,6 +52,7 @@ public class PostController implements Serializable {
         if (thread == null) {
             return "pretty:not-found";
         }
+        board = thread.getBoard();
         posts = postBean.findByThreadId(threadId);
 
         return null;
@@ -124,4 +128,11 @@ public class PostController implements Serializable {
         this.postId = postId;
     }
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
 }

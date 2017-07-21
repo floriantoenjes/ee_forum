@@ -16,17 +16,19 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+// ToDo: Perhaps declare filter priority in web.xml
 @WebFilter(urlPatterns = {"/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class SignInFilter implements Filter {
+
+    @Inject
+    private SignInController signInController;
 
     @EJB
     private PostBean postBean;
 
     @EJB
     private ThreadBean threadBean;
-
-    @Inject
-    private SignInController signInController;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -37,6 +39,7 @@ public class SignInFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+
         String path = httpServletRequest.getRequestURI().substring(httpServletRequest.getContextPath().length());
 
         Pattern threadPattern = Pattern.compile("^/board/\\d+/thread/(\\d+)/edit$");
@@ -52,7 +55,12 @@ public class SignInFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
 
-        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form")) && user == null) {
+        /* Restrict sign in and register pages to signed in user */
+        } else if ((path.startsWith("/signin") || path.startsWith("/register")) && user != null) {
+
+            servletRequest.getRequestDispatcher("/").forward(servletRequest, servletResponse);
+
+        } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form") || path.startsWith("/control-center")) && user == null) {
 
             httpServletResponse.setStatus(401);
             servletRequest.getRequestDispatcher("/unauthorized.xhtml").forward(servletRequest, servletResponse);

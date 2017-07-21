@@ -5,7 +5,11 @@
                 xmlns:pretty="http://ocpsoft.com/prettyfaces">
     <ui:define name="content">
 
-        <div class="wrapper">
+        <div class="thread-wrapper">
+            <pretty:link mappingId="viewBoard">
+                <f:param value="#{postController.boardId}"/>
+                #{postController.board.name}
+            </pretty:link>
             <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
 
             <pretty:link mappingId="editThread" rendered='#{signInController.user.equals(postController.thread.author) || signInController.user.hasRole("ADMIN")}'>
@@ -15,24 +19,28 @@
             </pretty:link>
         </div>
 
-        <h:dataTable styleClass="table" value="#{postController.posts}" var="post" rowClasses="table-even-row, table-odd-row">
-            <f:facet name="header">Posts</f:facet>
+        <h:dataTable styleClass="table post-table" value="#{postController.posts}" var="post" rowClasses="table-even-row,
+        table-odd-row" headerClass="table-header" columnClasses="avatar-column, user-column, post-column">
             <h:column>
-                <h:outputText value="#{post.text}"/>
-                <h:panelGrid columns="4">
-                    <h:outputText value="by #{post.author.username}"/>
-                    at
-                    <h:outputText value="#{post.created}">
-                        <f:convertDateTime dateStyle="short" type="both"/>
-                    </h:outputText>
-
-                    <pretty:link mappingId="editPost" rendered='#{signInController.user.equals(post.author) || signInController.user.hasRole("ADMIN")}'>
-                        <f:param value="#{postController.boardId}"/>
-                        <f:param value="#{postController.threadId}"/>
-                        <f:param value="#{post.id}"/>
-                        Edit post
-                    </pretty:link>
-                </h:panelGrid>
+                <h:graphicImage url="/avatar?userId=#{post.author.id}" rendered="#{post.author.avatar != null}"/>
+                <h:graphicImage library="img" name="user.png" rendered="#{post.author.avatar == null}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{post.author.username}"/>
+                <br/>
+                <br/>
+                <h:outputText value="#{post.created}">
+                    <f:convertDateTime dateStyle="short" type="both"/>
+                </h:outputText>
+            </h:column>
+            <h:column>
+                <h:outputText style="white-space: pre-wrap" value="#{post.text}" />
+                <pretty:link mappingId="editPost" rendered='#{signInController.user.equals(post.author) || signInController.user.hasRole("ADMIN")}'>
+                    <f:param value="#{postController.boardId}"/>
+                    <f:param value="#{postController.threadId}"/>
+                    <f:param value="#{post.id}"/>
+                    Edit post
+                </pretty:link>
             </h:column>
         </h:dataTable>
         <div class="wrapper">
