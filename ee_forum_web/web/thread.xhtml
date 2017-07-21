@@ -33,16 +33,14 @@
                     <f:convertDateTime dateStyle="short" type="both"/>
                 </h:outputText>
             </h:column>
-            <h:column >
-                <h:outputText value="#{post.text}"/>
-                <h:panelGrid columns="4">
-                    <pretty:link mappingId="editPost" rendered='#{signInController.user.equals(post.author) || signInController.user.hasRole("ADMIN")}'>
-                        <f:param value="#{postController.boardId}"/>
-                        <f:param value="#{postController.threadId}"/>
-                        <f:param value="#{post.id}"/>
-                        Edit post
-                    </pretty:link>
-                </h:panelGrid>
+            <h:column>
+                <h:outputText value="#{post.text}" />
+                <pretty:link mappingId="editPost" rendered='#{signInController.user.equals(post.author) || signInController.user.hasRole("ADMIN")}'>
+                    <f:param value="#{postController.boardId}"/>
+                    <f:param value="#{postController.threadId}"/>
+                    <f:param value="#{post.id}"/>
+                    Edit post
+                </pretty:link>
             </h:column>
         </h:dataTable>
         <div class="wrapper">
