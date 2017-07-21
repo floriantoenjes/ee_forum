@@ -22,7 +22,7 @@ body {
 }
 
 .table {
-    margin: 0 auto;
+    margin: 1em auto 1em;
     border: 1px solid black;
 }
 
@@ -43,6 +43,11 @@ body {
 
 .wrapper {
     text-align: center;
+}
+
+.thread-wrapper {
+    width: 75%;
+    margin: 0 auto;
 }
 
 .post-table {
