@@ -27,7 +27,7 @@ public class PostBean {
 
     public List<Post> findByThreadId(Long threadId) {
         TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p WHERE p.thread.id = :threadId " +
-                "ORDER BY p.created DESC ", Post.class);
+                "ORDER BY p.created ASC ", Post.class);
         query.setParameter("threadId", threadId);
 
         return query.getResultList();
