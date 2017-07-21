@@ -20,7 +20,7 @@ import java.io.InputStream;
 @Named
 @RequestScoped
 public class ProfileController {
-    private final static int MAX_IMAGE_LENGTH = 400;
+    private final static int MAX_IMAGE_LENGTH = 100;
 
     private Part part;
 
