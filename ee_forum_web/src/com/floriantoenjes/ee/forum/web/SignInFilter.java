@@ -37,6 +37,7 @@ public class SignInFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
+
         String path = httpServletRequest.getRequestURI().substring(httpServletRequest.getContextPath().length());
 
         Pattern threadPattern = Pattern.compile("^/board/\\d+/thread/(\\d+)/edit$");
