@@ -3,6 +3,8 @@ package com.floriantoenjes.ee.forum.web;
 import com.floriantoenjes.ee.forum.ejb.UserBean;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +19,15 @@ public class AvatarServlet extends HttpServlet {
     private UserBean userBean;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long userId = Long.parseLong(request.getParameter("userId"));
-        byte[] avatar = userBean.getAvatar(userId);
-        if (avatar != null) {
-            response.reset();
-            response.getOutputStream().write(avatar);
+        try {
+            Long userId = Long.parseLong(request.getParameter("userId"));
+            byte[] avatar = userBean.getAvatar(userId);
+            if (avatar != null) {
+                response.reset();
+                response.getOutputStream().write(avatar);
+            }
+        } catch (NumberFormatException e) {
+            response.sendError(404);
         }
     }
 }
