@@ -13,7 +13,7 @@ body {
 .navbar {
     width: 50%;
     margin: 0 auto;
-    padding-left: 0;
+    padding: 1.5em;
     text-align: center;
 }
 
