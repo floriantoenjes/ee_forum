@@ -7,6 +7,10 @@
 
         <div class="wrapper">
             <h2><h:outputLabel value="#{postController.thread.name}"/></h2>
+            <pretty:link mappingId="viewBoard">
+                <f:param value="#{postController.boardId}"/>
+                #{postController.board.name}
+            </pretty:link>
 
             <pretty:link mappingId="editThread" rendered='#{signInController.user.equals(postController.thread.author) || signInController.user.hasRole("ADMIN")}'>
                 <f:param value="#{postController.boardId}"/>
