@@ -6,10 +6,17 @@
     <ui:define name="content">
         <div class="wrapper">
             <h2><h:outputLabel value="Control Center"/></h2>
-            <h:graphicImage url="/avatar?userId=#{signInController.user.id}" rendered="#{signInController.user.avatar != null}"/>
             <h:form id="avatarForm" enctype="multipart/form-data">
-                <h:inputFile value="#{profileController.part}"/>
-                <h:commandButton value="Submit Avatar" action="#{profileController.saveProfile}"/>
+                <h:outputLabel for="avatar" value="Upload an avatar:"/>
+                <br/>
+                <h:graphicImage url="/avatar?userId=#{signInController.user.id}" rendered="#{signInController.user.avatar != null}"/>
+                <br/>
+                <h:inputFile id="avatar" value="#{profileController.part}"/>
+                <br/>
+                <br/>
+                <h:outputLabel for="signature" value="Choose a signature:"/>
+                <h:inputTextarea id="signature"/>
+                <h:commandButton value="Save Profile" action="#{profileController.saveProfile}"/>
             </h:form>
         </div>
     </ui:define>
