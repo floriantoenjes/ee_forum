@@ -6,6 +6,7 @@
     <ui:define name="content">
         <div class="wrapper">
             <h2><h:outputLabel value="Control Center"/></h2>
+            <h:graphicImage url="/avatar?userId=#{signInController.user.id}" rendered="#{signInController.user != null}"/>
             <h:form id="avatarForm" enctype="multipart/form-data">
                 <h:inputFile value="#{profileController.part}"/>
                 <h:commandButton value="Submit Avatar" action="#{profileController.saveProfile}"/>
