@@ -3,6 +3,7 @@ package com.floriantoenjes.ee.forum.web;
 import com.floriantoenjes.ee.forum.ejb.UserBean;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
@@ -25,8 +26,10 @@ public class AvatarServlet extends HttpServlet {
             if (avatar != null) {
                 response.reset();
                 response.getOutputStream().write(avatar);
+            } else {
+                response.sendError(404);
             }
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | EJBException e) {
             response.sendError(404);
         }
     }
