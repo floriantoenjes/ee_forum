@@ -44,4 +44,8 @@ public class UserBean {
         query.setParameter("userId", userId);
         return (byte[]) query.getSingleResult();
     }
+
+    public void persist(User user) {
+        em.merge(user);
+    }
 }
