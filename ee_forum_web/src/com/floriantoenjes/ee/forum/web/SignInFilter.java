@@ -52,6 +52,11 @@ public class SignInFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
 
+        /* Restrict sign in and register pages to signed in user */
+        } else if ((path.startsWith("/signin") || path.startsWith("/register")) && user != null) {
+
+            servletRequest.getRequestDispatcher("/").forward(servletRequest, servletResponse);
+
         } else if ((path.startsWith("/thread_form") || path.startsWith("/post_form")) && user == null) {
 
             httpServletResponse.setStatus(401);
