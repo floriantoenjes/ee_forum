@@ -42,7 +42,7 @@ public class ProfileController {
             }
             user.setAvatar(scale(baos.toByteArray()));
 
-            userBean.persist(user);
+            userBean.merge(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

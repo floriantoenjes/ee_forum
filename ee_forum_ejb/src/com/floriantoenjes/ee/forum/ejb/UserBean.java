@@ -54,7 +54,7 @@ public class UserBean {
 
     }
 
-    public void persist(User user) {
+    public void merge(User user) {
         em.merge(user);
     }
 }

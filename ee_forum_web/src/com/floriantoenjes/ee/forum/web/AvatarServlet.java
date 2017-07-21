@@ -24,6 +24,7 @@ public class AvatarServlet extends HttpServlet {
         try {
             Long userId = Long.parseLong(request.getParameter("userId"));
             byte[] avatar = userBean.getAvatar(userId).orElseThrow(NotFoundException::new);
+
             response.reset();
             response.getOutputStream().write(avatar);
         } catch (NumberFormatException e) {
