@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.NotFoundException;
 import java.io.IOException;
 
 @WebServlet(name = "AvatarServlet", urlPatterns = "/avatar")
@@ -22,14 +23,12 @@ public class AvatarServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Long userId = Long.parseLong(request.getParameter("userId"));
-            byte[] avatar = userBean.getAvatar(userId);
-            if (avatar != null) {
-                response.reset();
-                response.getOutputStream().write(avatar);
-            } else {
-                response.sendError(404);
-            }
-        } catch (NumberFormatException | EJBException e) {
+            byte[] avatar = userBean.getAvatar(userId).orElseThrow(NotFoundException::new);
+            response.reset();
+            response.getOutputStream().write(avatar);
+        } catch (NumberFormatException e) {
+            response.sendError(400);
+        } catch (NotFoundException e) {
             response.sendError(404);
         }
     }
