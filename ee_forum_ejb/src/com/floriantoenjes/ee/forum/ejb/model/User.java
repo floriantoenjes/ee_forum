@@ -40,6 +40,10 @@ public class User implements Serializable {
     @Size(min = 4, max = 20, message = "has to be between 4 and 20 characters")
     private String username;
 
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
+    private byte[] avatar;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USR_ROLE",
             joinColumns = @JoinColumn(name = "USR_ID", referencedColumnName = "ID"),
@@ -98,6 +102,14 @@ public class User implements Serializable {
 
     public boolean hasRole(String roleName) {
         return roles.stream().anyMatch(r -> r.getName().equals(roleName));
+    }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
     }
 
     @Override

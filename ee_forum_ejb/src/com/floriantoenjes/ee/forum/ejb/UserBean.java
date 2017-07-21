@@ -25,11 +25,9 @@ public class UserBean {
         Query query = em.createNamedQuery("Role.findByName");
         query.setParameter("name", "USER");
         Role userRole = (Role) query.getSingleResult();
-
         user.addRole(userRole);
 
         em.persist(user);
-
         return user;
     }
 
@@ -39,5 +37,11 @@ public class UserBean {
         query.setParameter("username", username);
         query.setParameter("password", password);
         return query.getResultList().stream().findFirst();
+    }
+
+    public byte[] getAvatar(Long userId) {
+        Query query = em.createQuery("SELECT u.avatar FROM User u WHERE u.id = :userId");
+        query.setParameter("userId", userId);
+        return (byte[]) query.getSingleResult();
     }
 }

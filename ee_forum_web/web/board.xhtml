@@ -7,7 +7,7 @@
         <h2 id="subtitle"><h:outputLabel value="#{threadController.board.name}"/></h2>
 
         <div class="wrapper">
-            <h:dataTable styleClass="table" value="#{threadController.threads}" var="thread" rowClasses="table-even-row, table-odd-row" >
+            <h:dataTable styleClass="table" value="#{threadController.threads}" var="thread" rowClasses="table-even-row, table-odd-row" headerClass="table-header">
                 <f:facet name="header">Threads</f:facet>
                 <h:column>
                     <f:facet name="header">Thread</f:facet>
