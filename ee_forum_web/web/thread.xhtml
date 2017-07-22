@@ -35,6 +35,10 @@
             </h:column>
             <h:column>
                 <h:outputText style="white-space: pre-wrap" value="#{post.text}" />
+                <ui:fragment rendered="#{post.author.signature != null}">
+                    <hr/>
+                    <h:outputText style="white-space: pre-wrap" value="#{post.author.signature}"/>
+                </ui:fragment>
                 <pretty:link mappingId="editPost" rendered='#{signInController.user.equals(post.author) || signInController.user.hasRole("ADMIN")}'>
                     <f:param value="#{postController.boardId}"/>
                     <f:param value="#{postController.threadId}"/>
