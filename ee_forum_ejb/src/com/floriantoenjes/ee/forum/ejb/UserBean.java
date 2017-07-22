@@ -51,7 +51,6 @@ public class UserBean {
         TypedQuery<byte[]> typedQuery = em.createQuery(cq);
 
         return typedQuery.getResultList().stream().findFirst();
-
     }
 
     public void merge(User user) {

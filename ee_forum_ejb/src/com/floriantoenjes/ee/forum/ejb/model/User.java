@@ -1,5 +1,7 @@
 package com.floriantoenjes.ee.forum.ejb.model;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -29,7 +31,7 @@ public class User implements Serializable {
 
     @NotNull(message = "is required")
     @Size(min = 3, max = 40, message = "has to be between 3 and 40 characters")
-    @Pattern(regexp = "[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+", message = "has to be a valid email address")
+    @Email(message = "has to be a valid email address")
     private String email;
 
     @NotNull(message = "is required")
