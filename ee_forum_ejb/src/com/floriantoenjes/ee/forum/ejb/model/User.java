@@ -44,6 +44,8 @@ public class User implements Serializable {
     @Lob
     private byte[] avatar;
 
+    private String signature;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USR_ROLE",
             joinColumns = @JoinColumn(name = "USR_ID", referencedColumnName = "ID"),
@@ -110,6 +112,14 @@ public class User implements Serializable {
 
     public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     @Override

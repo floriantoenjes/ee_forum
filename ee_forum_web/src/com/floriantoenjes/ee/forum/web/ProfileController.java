@@ -34,14 +34,15 @@ public class ProfileController {
         User user = signInController.getUser();
 
         try {
-            InputStream in = part.getInputStream();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            for (int length = 0; (length = in.read(buffer)) > 0;) {
-                baos.write(buffer, 0, length);
+            if (part != null) {
+                InputStream in = part.getInputStream();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                for (int length = 0; (length = in.read(buffer)) > 0;) {
+                    baos.write(buffer, 0, length);
+                }
+                user.setAvatar(scale(baos.toByteArray()));
             }
-            user.setAvatar(scale(baos.toByteArray()));
-
             userBean.merge(user);
         } catch (Exception e) {
             e.printStackTrace();

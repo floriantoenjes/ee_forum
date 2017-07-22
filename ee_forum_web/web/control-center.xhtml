@@ -15,7 +15,7 @@
                 <br/>
                 <br/>
                 <h:outputLabel for="signature" value="Choose a signature:"/>
-                <h:inputTextarea id="signature"/>
+                <h:inputTextarea id="signature" value="#{signInController.user.signature}"/>
                 <h:commandButton value="Save Profile" action="#{profileController.saveProfile}"/>
             </h:form>
         </div>
