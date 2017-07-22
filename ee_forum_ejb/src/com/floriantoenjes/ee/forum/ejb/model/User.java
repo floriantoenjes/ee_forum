@@ -46,6 +46,7 @@ public class User implements Serializable {
     @Lob
     private byte[] avatar;
 
+    @Size(max = 120, message = "has to be less than 120 characters")
     private String signature;
 
     @ManyToMany(fetch = FetchType.EAGER)
