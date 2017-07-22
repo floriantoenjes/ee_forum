@@ -12,13 +12,16 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Named
 @ViewScoped
 public class PostController implements Serializable {
     private static final long serialVersionUID = 1L;
+    private final int PAGE_SIZE = 5;
 
     private Long boardId;
     private Long threadId;
@@ -29,6 +32,10 @@ public class PostController implements Serializable {
     private Thread thread;
 
     private List<Post> posts;
+
+    private List<Integer> pages = new ArrayList<>();
+
+    private int first;
 
     @Inject
     private Post post;
@@ -55,7 +62,14 @@ public class PostController implements Serializable {
         board = thread.getBoard();
         posts = postBean.findByThreadId(threadId);
 
+        pages.clear();
+        IntStream.range(0, (int) Math.ceil(posts.size() / (double) PAGE_SIZE)).forEach(pages::add);
+
         return null;
+    }
+
+    public void changePage(int page) {
+        first = page * PAGE_SIZE;
     }
 
     public String createPost(User author) {
@@ -134,5 +148,21 @@ public class PostController implements Serializable {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public List<Integer> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Integer> pages) {
+        this.pages = pages;
+    }
+
+    public int getFirst() {
+        return first;
+    }
+
+    public void setFirst(int first) {
+        this.first = first;
     }
 }
