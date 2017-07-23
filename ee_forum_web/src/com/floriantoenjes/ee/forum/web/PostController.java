@@ -28,15 +28,12 @@ public class PostController implements Serializable {
     private Long postId;
 
     private Board board;
-
     private Thread thread;
-
     private List<Post> posts;
-
-    private List<Integer> pages = new ArrayList<>();
 
     private int first;
     private int currentPage;
+    private List<Integer> pages = new ArrayList<>();
 
     @Inject
     private Post post;

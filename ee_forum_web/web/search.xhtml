@@ -7,9 +7,16 @@
         <div class="wrapper">
             <h2 id="subtitle">Search</h2>
             <h:form>
-                <h:inputText id="search"/>
-                <h:commandButton value="Go"/>
+                <h:inputText id="search" value="#{searchController.query}"/>
+                <h:commandButton value="Go" action="#{searchController.search}"/>
             </h:form>
         </div>
+        <h:dataTable value="#{searchController.results}" var="result">
+            <h:column>#{result.author.username}</h:column>
+            <h:outputText value="#{result.created}">
+                <f:convertDateTime dateStyle="short" type="both"/>
+            </h:outputText>
+            <h:column>#{result.text}</h:column>
+        </h:dataTable>
     </ui:define>
 </ui:composition>

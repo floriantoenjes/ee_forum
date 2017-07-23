@@ -33,6 +33,15 @@ public class PostBean {
         return query.getResultList();
     }
 
+    public List<Post> findByText(String text) {
+        TypedQuery<Post> query = em.createQuery("SELECT p FROM Post p WHERE LOWER(p.text) LIKE :text",
+                Post.class);
+        query.setParameter("text", "%" + text + "%");
+
+        return query.getResultList();
+
+    }
+
     public void editPost(Post post) {
         em.merge(post);
     }
