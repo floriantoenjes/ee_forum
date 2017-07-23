@@ -51,7 +51,10 @@
         <div class="wrapper">
             <h:form> Page
                 <ui:repeat value="#{postController.pages}" var="page">
-                    <h:commandLink value="#{page + 1} " action="#{postController.changePage(page)}"/>
+                    <h:commandLink value="#{page + 1} " action="#{postController.changePage(page)}" rendered="#{page != postController.currentPage}"/>
+                    <ui:fragment rendered="#{page == postController.currentPage}">
+                        #{page + 1}
+                    </ui:fragment>
                 </ui:repeat>
             </h:form>
             <pretty:link mappingId="addPost" rendered="#{signInController.user != null}">

@@ -36,6 +36,7 @@ public class PostController implements Serializable {
     private List<Integer> pages = new ArrayList<>();
 
     private int first;
+    private int currentPage;
 
     @Inject
     private Post post;
@@ -69,6 +70,7 @@ public class PostController implements Serializable {
     }
 
     public void changePage(int page) {
+        currentPage = page;
         first = page * PAGE_SIZE;
     }
 
@@ -164,5 +166,13 @@ public class PostController implements Serializable {
 
     public void setFirst(int first) {
         this.first = first;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 }
